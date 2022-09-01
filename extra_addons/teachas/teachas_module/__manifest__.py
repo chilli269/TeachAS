@@ -14,7 +14,9 @@
         'contacts'
     ],
     'data': [
-        'views/res_partner.xml'
+        'security/ir.model.access.csv',
+        'views/res_partner.xml',
+        'views/teachas.xml'
     ],
     'assets': {
         'web.assets_frontend': [
