@@ -7,7 +7,7 @@ class TeachasController(http.Controller):
       def dashboard(self):
 
             current_uid=http.request.env.context.get('uid')
-            contact=request.env['res.partner'].browse(current_uid)
+            contact=request.env['res.user'].browse(current_uid)
             
             return http.request.render('teachas_website.dashboard',{
                'type':contact.contact_type   
