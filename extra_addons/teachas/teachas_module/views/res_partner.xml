@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record model="ir.ui.view" id="res_partner_add_contact_type">
+    <record model="ir.ui.view" id="res_users_add_contact_type">
         <field name="name">res_partner_add_contact_type</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
-        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="model">res.users</field>
         <field name="arch" type="xml">
-            <xpath expr="//form//field[@name='vat']" position="after">
-                <field name="contact_type" string='Contact Type'/>
+            <xpath expr="//form//field[@name='partner_id']" position="after">
+                <field name="contact_type" string='Contact Type' widget="radio"/>
             </xpath>
         </field>
     </record>

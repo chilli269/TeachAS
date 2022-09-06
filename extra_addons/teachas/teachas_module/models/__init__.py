@@ -1,1 +1,1 @@
-from . import res_partner, teachas
+from . import res_users, teachas
