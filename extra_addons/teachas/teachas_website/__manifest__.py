@@ -13,10 +13,9 @@
         'web'
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'security/management_bug_security.xml',
-        'views/management_bug.xml',
-        'data/bugs_data.xml',
+        # 'security/ir.model.access.csv',
+        'views/dashboard_template.xml',
+        # 'data/bugs_data.xml',
     ],
     'installable': True,
     'application': True,
