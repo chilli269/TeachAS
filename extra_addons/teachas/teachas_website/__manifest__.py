@@ -15,7 +15,6 @@
     ],
     'data': [
         # 'security/ir.model.access.csv',
-        # 'security/management_bug_security.xml',
         'views/dashboard_template.xml',
         # 'data/bugs_data.xml',
     ],

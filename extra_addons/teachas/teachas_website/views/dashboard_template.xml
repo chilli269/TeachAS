@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
       <template id="dashboard" name="teachas_dashboard">
-            <t t-if="contact_type==elev">
-                  <h1 style='color:red;'>Mama ta</h1>
+            <t t-call="website.layout">
+                  <t t-if="contact_type=='elev'">
+                        <t t-if="sessions">
+                              <h2>Your sessions</h2>
+                              <table id="session_table">
+                                    <t t-foreach="sessions" t-as="session">
+                                          <tr>
+                                                <tr>
+                                                      <th>Class</th>
+                                                      <th>Mentor</th>
+                                                      <th>Student</th>
+                                                      <th>Meeting date</th>
+                                                      <th>Meeting duration</th>
+                                                </tr>
+                                                      <td>
+                                                            <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
+                                                            <p><t t-esc="session.materie"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.mentor"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.elev"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.data"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.time_length"/></p>
+                                                      </td>
+                                          </tr>
+                                    </t>
+                              </table>
+                        </t>
+                        <t t-else="">
+                              <!-- <span>There are no upcoming sessions, please<a href="/placeholder">book one</a></span> -->
+                        </t>         
+                  </t>
+                  <t t-else="">
+                        <h1 style='color:yellow;'>Mama ta</h1>
+                  </t>
             </t>
-            <t t-else="">
-                  <h1 style='color:yellow;'>Mama ta</h1>
-            </t>
+            
       </template>
 </odoo>
