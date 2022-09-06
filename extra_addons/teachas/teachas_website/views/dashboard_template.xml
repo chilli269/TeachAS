@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <template id="dashboard" name="teachas_dashboard">
+            <h1 style='color:red;'>Mama ta</h1>
+      </template>
+</odoo>
