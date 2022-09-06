@@ -15,7 +15,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/res_user.xml',
+        'views/res_users.xml',
         'views/teachas.xml'
     ],
     'assets': {

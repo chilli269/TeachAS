@@ -10,13 +10,14 @@
     'depends': [
         'base',
         'website',
-        'web'
+        'web',
+        'teachas_module'
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'security/management_bug_security.xml',
-        'views/management_bug.xml',
-        'data/bugs_data.xml',
+        # 'security/ir.model.access.csv',
+        # 'security/management_bug_security.xml',
+        'views/dashboard_template.xml',
+        # 'data/bugs_data.xml',
     ],
     'installable': True,
     'application': True,
