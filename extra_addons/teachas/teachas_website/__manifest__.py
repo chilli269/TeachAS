@@ -14,10 +14,16 @@
         'teachas_module'
     ],
     'data': [
-        # 'security/ir.model.access.csv',
         'views/dashboard_template.xml',
-        # 'data/bugs_data.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            
+        ],
+        'web.assets_backend': [
+            
+        ],
+    },
     'installable': True,
     'application': True,
     'auto_install': False,
