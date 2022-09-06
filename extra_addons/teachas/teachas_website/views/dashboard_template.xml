@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
       <template id="dashboard" name="teachas_dashboard">
-            <h1 style='color:red;'>Mama ta</h1>
+            <t t-if="contact_type==elev">
+                  <h1 style='color:red;'>Mama ta</h1>
+            </t>
+            <t t-else="">
+                  <h1 style='color:yellow;'>Mama ta</h1>
+            </t>
       </template>
 </odoo>
