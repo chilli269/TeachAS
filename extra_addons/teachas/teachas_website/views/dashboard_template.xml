@@ -6,33 +6,33 @@
                         <t t-if="sessions">
                               <h2>Your sessions</h2>
                               <table id="session_table">
-                              <t t-foreach="sessions" t-as="session">
-                                    <tr>
-                                    <tr>
-                                          <th>Class</th>
-                                          <th>Mentor</th>
-                                          <th>Student</th>
-                                          <th>Meeting date</th>
-                                          <th>Meeting duration</th>
-                                    </tr>
-                                          <td>
-                                                <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
-                                                <p><t t-esc="session.materie"/></p>
-                                          </td>
-                                          <td>
-                                                <p><t t-esc="session.mentor"/></p>
-                                          </td>
-                                          <td>
-                                                <p><t t-esc="session.elev"/></p>
-                                          </td>
-                                          <td>
-                                                <p><t t-esc="session.data"/></p>
-                                          </td>
-                                          <td>
-                                                <p><t t-esc="session.time_length"/></p>
-                                          </td>
-                                    </tr>
-                              </t>
+                                    <t t-foreach="sessions" t-as="session">
+                                          <tr>
+                                                <tr>
+                                                      <th>Class</th>
+                                                      <th>Mentor</th>
+                                                      <th>Student</th>
+                                                      <th>Meeting date</th>
+                                                      <th>Meeting duration</th>
+                                                </tr>
+                                                      <td>
+                                                            <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
+                                                            <p><t t-esc="session.materie"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.mentor"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.elev"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.data"/></p>
+                                                      </td>
+                                                      <td>
+                                                            <p><t t-esc="session.time_length"/></p>
+                                                      </td>
+                                          </tr>
+                                    </t>
                               </table>
                         </t>
                         <t t-else="">
