@@ -2,7 +2,6 @@
 <odoo>
       <template id="dashboard" name="teachas_dashboard">
             <t t-call="website.layout">
-                  <t t-if="contact_type=='elev'">
                         <t t-if="sessions">
                               <h2>Your sessions</h2>
                               <table id="session_table">
@@ -20,10 +19,10 @@
                                                             <p><t t-esc="session.materie"/></p>
                                                       </td>
                                                       <td>
-                                                            <p><t t-esc="session.mentor"/></p>
+                                                            <p><t t-esc="session.mentor.name"/></p>
                                                       </td>
                                                       <td>
-                                                            <p><t t-esc="session.elev"/></p>
+                                                            <p><t t-esc="session.elev.name"/></p>
                                                       </td>
                                                       <td>
                                                             <p><t t-esc="session.data"/></p>
@@ -36,12 +35,8 @@
                               </table>
                         </t>
                         <t t-else="">
-                              <!-- <span>There are no upcoming sessions, please<a href="/placeholder">book one</a></span> -->
+                              <span>There are no upcoming sessions, please<a href="/placeholder">book one</a></span>
                         </t>         
-                  </t>
-                  <t t-else="">
-                        <h1 style='color:yellow;'>Mama ta</h1>
-                  </t>
             </t>
             
       </template>
