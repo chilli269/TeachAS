@@ -30,27 +30,40 @@
         </field>
     </record>
 
-    
-    <!-- <record id="view_testing2_module_search" model="ir.ui.view">
-        <field name="name">view_testing2_module_search</field>
-        <field name="model">testing2_module</field>
+    <record model="ir.ui.view" id="view_subjects_list">
+        <field name="name">view_subjects_list</field>
+        <field name="model">teachas.subjects</field>
         <field name="arch" type="xml">
-            <search>
+            <tree>
                 <field name="name"/>
-                <field name="address"/>
-                <field name="size_output"/>
-                <field name="owner_full_name"/>
-                <field name="total_price"/>
-                <field name="total_price"/>
-                <field name="state"/>
-            </search>
+                <field name="mentori"/>
+            </tree>
         </field>
-    </record> -->
+    </record>
+
+    <record id="view_teachas_subjects_form" model="ir.ui.view">
+        <field name="name">view_teachas_subjects_form</field>
+        <field name="model">teachas.subjects</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" string="Subjects/Materie"/>
+                    <field name="mentori" domain="[('contact_type','=','mentor')]" options="{'no_quick_create': True}" string="Mentori"/>
+                </group>
+            </form>
+        </field>
+    </record>
 
 
     <record model="ir.actions.act_window" id="action_teachas_module">
         <field name="name">TeachAS</field>
         <field name="res_model">teachas</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_teachas_subjects_module">
+        <field name="name">Subjects/Materii</field>
+        <field name="res_model">teachas.subjects</field>
         <field name="view_mode">tree,form</field>
     </record>
     
@@ -60,12 +73,13 @@
               action="action_teachas_module"
               web_icon="teachas_module,static/description/icon.png"/>
 
-        <!-- <menuitem id="menu_teachas_module"
-                  name="TeachAS"
+        <menuitem id="menu_teachas_subjects_module"
+                  name="Subjects/Materii"
                   parent="main_menu_teachas_module"
+                  action="teachas_module.action_teachas_subjects_module"
                   sequence="0"/>
 
-            <menuitem id="menu_teachas_module_inner"
+            <!-- <menuitem id="menu_teachas_module_inner"
                       name="TeachAS List"
                       parent="menu_teachas_module"
                       
@@ -74,9 +88,9 @@
                 <menuitem id="menu_teachas_module"
                             name="TeachAS"
                             parent="main_menu_teachas_module"
-                            sequence="0"/> -->
+                            sequence="0"/>
 
-                    <!-- <menuitem id="menu_testing_module_inner"
+                    <menuitem id="menu_testing_module_inner"
                                 name="Testing List"
                                 parent="menu_testing_module"
                                 action="testing.action_testing_module"

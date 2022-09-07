@@ -4,3 +4,4 @@ class AddContactType(models.Model):
     _inherit = "res.users"
 
     contact_type = fields.Selection([('elev', 'Elev'),('mentor', 'Mentor'),('other', 'Other')], string="Contact Type", default='elev')
+    materie = fields.Many2one('teachas.subjects', string="Materie mentor")

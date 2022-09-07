@@ -18,7 +18,7 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            
+            'teachas_website/static/src/**/*.css'
         ],
         'web.assets_backend': [
             

@@ -6,9 +6,12 @@
         <field name="model">res.users</field>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-            <page name="teachas" string="TeachAS">
-                <field name="contact_type" string='Contact Type' widget="radio"/>
-            </page>
+                <page name="teachas" string="TeachAS">
+                    <group>
+                        <field name="contact_type" string='Contact Type' widget="radio"/>
+                        <field name="materie" string="Materie mentor"/>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

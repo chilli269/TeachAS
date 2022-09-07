@@ -4,7 +4,8 @@
             <t t-call="website.layout">
                   <t t-if="sessions">
                         <h2>Your sessions</h2>
-                        <table id="session_table">
+                        <table id="session_table" class="meetings_table">
+                              
                               <tr>
                                     <th>Class</th>
                                     <th>Mentor</th>
@@ -27,7 +28,7 @@
                                           <p><t t-esc="session.data"/></p>
                                     </td>
                                     <td>
-                                          <p><t t-esc="session.time_length"/></p>
+                                          <p><t t-esc="session.time_length"/> hours</p>
                                     </td>
                               </tr>
                         </table>
