@@ -32,9 +32,9 @@
                               </tr>
                         </table>
                   </t>
-                  <t t-else="">
+                  <!-- <t t-else="">
                         <span>There are no upcoming sessions, please<a href="/placeholder">book one</a></span>
-                  </t>         
+                  </t>          -->
             </t>
       </template>
 </odoo>
