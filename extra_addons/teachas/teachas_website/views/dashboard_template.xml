@@ -38,4 +38,12 @@
                   </t>          -->
             </t>
       </template>
+      <data>
+            <record id="menu_dashboard" model="website.menu">
+                <field name="name">My Dashboard</field>
+                <field name="url">/dashboard</field>
+                <field name="parent_id" ref="website.main_menu"/>
+                <field name="sequence" type="int">21</field>
+            </record>
+        </data>
 </odoo>
