@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <template id="schedule_meeting" name="Schedule a meeting">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                       <form action="/schedule-meeting/submit">
+                            <div class="form-group">
+                                <label for="name">Time Length</label>
+                                <input type="text" class="form-control" name="time_length" id="time_length" required="true"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
+                    </div>
+                </div>
+              </div>
+          </t>
+    </template>
+
+    <template id="schedule_meeting_success" name="Schedule a Meeting Successfully Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            Meeting schedule created successfully.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <data>
+        <record id="menu_schedule_meeting" model="website.menu">
+            <field name="name">Schedule a meeting</field>
+            <field name="url">/schedule-meeting</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">22</field>
+        </record>
+    </data>
+</odoo>

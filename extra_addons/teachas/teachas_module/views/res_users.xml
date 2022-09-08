@@ -9,7 +9,7 @@
                 <page name="teachas" string="TeachAS">
                     <group>
                         <field name="contact_type" string='Contact Type' widget="radio"/>
-                        <field name="materie" string="Materie mentor" attrs="{'invisible': [('contact_type','!=','mentor')]}"/>
+                        <field name="materie" string="Materie mentor" attrs="{'invisible': [('contact_type','!=','mentor')], 'required': [('contact_type','=','mentor')]}"/>
                     </group>
                 </page>
             </xpath>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-      <template id="dashboard" name="teachas_dashboard">
+      <template id="dashboard" name="Your Dashboard">
             <t t-call="website.layout">
                   <t t-if="sessions">
                         <h2>Your sessions</h2>

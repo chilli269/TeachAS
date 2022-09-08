@@ -15,6 +15,7 @@
     ],
     'data': [
         'views/dashboard_template.xml',
+        'views/schedule_meeting_template.xml'
     ],
     'assets': {
         'web.assets_frontend': [
