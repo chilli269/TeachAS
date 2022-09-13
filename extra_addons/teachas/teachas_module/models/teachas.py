@@ -11,10 +11,11 @@ class TeachAS(models.Model):
     # time_length = fields.Float(string = "Meeting Length(hours)")
     hour_length=fields.Integer(string="Hours")
     minute_length=fields.Integer(string="Minutes")
+    is_session=fields.Boolean('Is Interactive Session?', default=False)
 
     @api.onchange('minute_length')
     def _check_minutes(self):
-        if (self.minute_length>60):
-            raise UserError('Your meeting time minutes cannot exceed 60')
+        if (self.minute_length>59):
+            raise UserError('Your meeting time minutes cannot exceed 59')
     
 

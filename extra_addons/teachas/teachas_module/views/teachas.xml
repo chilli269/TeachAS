@@ -27,6 +27,7 @@
                     <!-- <field name="time_length" string = "Meeting Length(hours)" placeholder="2 Hours"/> -->
                     <field name="hour_length"/>
                     <field name="minute_length"/>
+                    <field name="is_session"/>
                 </group>
             </form>
         </field>
@@ -74,12 +75,18 @@
               sequence="99"
               action="action_teachas_module"
               web_icon="teachas_module,static/description/icon.png"/>
+    <menuitem
+        id="main_menu_teachas_module_2"
+        name="Sessions"
+        parent="main_menu_teachas_module"
+        action="teachas_module.action_teachas_module"
+        sequence="1"/>
 
         <menuitem id="menu_teachas_subjects_module"
                   name="Subjects/Materii"
                   parent="main_menu_teachas_module"
                   action="teachas_module.action_teachas_subjects_module"
-                  sequence="0"/>
+                  sequence="2"/>
 
             <!-- <menuitem id="menu_teachas_module_inner"
                       name="TeachAS List"
