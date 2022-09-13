@@ -28,16 +28,19 @@
                                           <p><t t-esc="session.data"/></p>
                                     </td>
                                     <td>
+                                          <p><t t-esc="session.time_length"/></p>
+                                    </td>
+                                    <!-- <td>
                                           <p><t t-esc="session.hour_length"/> hours</p>
                                     </td>
                                     <td>
                                           <p><t t-esc="session.minute_length"/> minutes</p>
-                                    </td>
+                                    </td> -->
                               </tr>
                         </table>
                   </t>
                   <!-- <t t-else="">
-                        <span>There are no upcoming sessions, please<a href="/placeholder">book one</a></span>
+                        <span>There are no upcoming sessions, please<a href="/schedule-meeting">book one</a></span>
                   </t>          -->
             </t>
       </template>
