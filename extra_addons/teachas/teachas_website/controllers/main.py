@@ -22,8 +22,7 @@ class TeachasController(http.Controller):
       @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
       def customer_form_submit(self, **post):
             partner = request.env['teachas'].sudo().create({
-                  'hour_length': post.get('hour_length'),
-                  'minute_length': post.get('minute_length'),
+                  'time_length': post.get('time_length'),
                   'materie': post.get('subject')
             })
             vals = {

@@ -8,9 +8,9 @@ class TeachAS(models.Model):
     mentor = fields.Many2one('res.users', string="Mentor")
     elev = fields.Many2one('res.users', string="Elev")
     data = fields.Datetime(string="Meeting Date and Time")
-    # time_length = fields.Float(string = "Meeting Length(hours)")
-    hour_length=fields.Integer(string="Hours")
-    minute_length=fields.Integer(string="Minutes")
+    time_length = fields.Selection([('30m', '30 Minutes'),('1h', '1 Hour'),('1h30m', '1 Hour and 30 Minutes'),('2h', '2 Hours')], string="Time Length", default='30m')
+    # hour_length=fields.Integer(string="Hours")
+    # minute_length=fields.Integer(string="Minutes")
     is_session=fields.Boolean('Is Interactive Session?', default=False)
 
     @api.onchange('minute_length')
