@@ -16,7 +16,7 @@
                               <tr t-foreach="sessions" t-as="session">
                                     <td>
                                           <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
-                                          <p><t t-esc="session.materie"/></p>
+                                          <p><t t-esc="session.materie.name"/></p>
                                     </td>
                                     <td>
                                           <p><t t-esc="session.mentor.name"/></p>
