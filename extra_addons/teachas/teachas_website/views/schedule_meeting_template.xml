@@ -7,10 +7,10 @@
                     <div class="col-md-12">
                        <form action="/schedule-meeting/submit">
                             <div class="form-group">
-                                <label for="name">Time Length</label>
-                                <!-- <div><input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/>Hour(s)</div>
-                                <div><input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/>Minute(s)</div> -->
-                                <!-- <label for="hour_length">Time Length</label>
+                                <!-- <label for="name">Time Length</label>
+                                <div><input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/>Hour(s)</div>
+                                <div><input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/>Minute(s)</div>
+                                <label for="hour_length">Time Length</label>
                                 <div>Hour(s)<input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/></div>
                                 <div>Minute(s)<input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/></div> -->
                                 <label for="subject">Subject</label>
