@@ -24,7 +24,10 @@
                     <field name="elev" domain="[('contact_type','=','elev')]" options="{'no_quick_create': True}" string="Elev" placeholder="Elev"/>
                     <field name="mentor" domain="[('contact_type','=','mentor')]" options="{'no_quick_create': True}" string="Mentor" placeholder="Mentor"/>
                     <field name="data" string="Meeting Date and Time" placeholder="27 Aug, 12:35"/>
+<<<<<<< HEAD
                     <!-- <field name="time_length" string = "Meeting Length(hours)" placeholder="2 Hours"/> -->
+=======
+>>>>>>> e18ca7180f6645421d56d9f4cae07dc7895755ef
                     <field name="time_length"/>
                     <!-- <field name="hour_length"/>
                     <field name="minute_length"/> -->
