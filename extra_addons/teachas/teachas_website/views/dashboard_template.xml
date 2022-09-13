@@ -28,10 +28,7 @@
                                           <p><t t-esc="session.data"/></p>
                                     </td>
                                     <td>
-                                          <p><t t-esc="session.hour_length"/> hours</p>
-                                    </td>
-                                    <td>
-                                          <p><t t-esc="session.minute_length"/> minutes</p>
+                                          <p t-field="session.time_length"/>
                                     </td>
                               </tr>
                         </table>
