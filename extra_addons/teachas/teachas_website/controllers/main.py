@@ -7,8 +7,10 @@ class TeachasController(http.Controller):
       def dashboard(self):
             user_id=request.env['res.users'].browse(http.request.env.context.get('uid'))
             sessions=request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id), ('mentor.id', '=', user_id.id)])
+            subjects=request.env['teachas.subjects'].sudo().search([])
             return http.request.render('teachas_website.dashboard',{
-               'sessions':sessions
+               'sessions':sessions,
+               'subjects':subjects
             })
 
 
