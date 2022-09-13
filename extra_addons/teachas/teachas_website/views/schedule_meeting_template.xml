@@ -7,9 +7,17 @@
                     <div class="col-md-12">
                        <form action="/schedule-meeting/submit">
                             <div class="form-group">
-                                <label for="name">Time Length</label>
-                                <div><input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/>Hour(s)</div>
-                                <div><input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/>Minute(s)</div>
+                                <label for="hour_length">Time Length</label>
+                                <div>Hour(s)<input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/></div>
+                                <div>Minute(s)<input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/></div>
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject" class="form-control">
+                                    <t t-foreach="subjects" t-as="subject">
+                                        <option t-att-value="subject.id">
+                                            <t t-esc="subject.name"/>
+                                        </option>
+                                    </t>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
