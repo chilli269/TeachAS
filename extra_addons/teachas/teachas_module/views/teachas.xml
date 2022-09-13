@@ -9,7 +9,7 @@
                 <field name="materie"/>
                 <field name="mentor"/>
                 <field name="data"/>
-                <field name="time_length"/>
+                <!-- <field name="time_length"/> -->
             </tree>
         </field>
     </record>
@@ -24,7 +24,9 @@
                     <field name="elev" domain="[('contact_type','=','elev')]" options="{'no_quick_create': True}" string="Elev" placeholder="Elev"/>
                     <field name="mentor" domain="[('contact_type','=','mentor')]" options="{'no_quick_create': True}" string="Mentor" placeholder="Mentor"/>
                     <field name="data" string="Meeting Date and Time" placeholder="27 Aug, 12:35"/>
-                    <field name="time_length" string = "Meeting Length(hours)" placeholder="2 Hours"/>
+                    <!-- <field name="time_length" string = "Meeting Length(hours)" placeholder="2 Hours"/> -->
+                    <field name="hour_length"/>
+                    <field name="minute_length"/>
                 </group>
             </form>
         </field>

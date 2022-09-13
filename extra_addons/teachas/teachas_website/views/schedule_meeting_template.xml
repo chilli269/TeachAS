@@ -8,7 +8,8 @@
                        <form action="/schedule-meeting/submit">
                             <div class="form-group">
                                 <label for="name">Time Length</label>
-                                <input type="text" class="form-control" name="time_length" id="time_length" required="true"/>
+                                <div><input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/>Hour(s)</div>
+                                <div><input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/>Minute(s)</div>
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
