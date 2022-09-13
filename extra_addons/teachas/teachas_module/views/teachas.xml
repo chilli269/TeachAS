@@ -27,6 +27,7 @@
                     <!-- <field name="time_length" string = "Meeting Length(hours)" placeholder="2 Hours"/> -->
                     <field name="hour_length"/>
                     <field name="minute_length"/>
+                    <field name="is_session"/>
                 </group>
             </form>
         </field>
