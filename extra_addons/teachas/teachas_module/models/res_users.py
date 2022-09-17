@@ -5,3 +5,5 @@ class AddContactType(models.Model):
 
     contact_type = fields.Selection([('elev', 'Elev'),('mentor', 'Mentor'),('other', 'Other')], string="Contact Type", default='elev')
     materie = fields.Many2one('teachas.subjects', string="Materie mentor")
+    preferred_days = fields.Many2many("teachas.days", "mentors_preferred_days", "mentors", "preferred_days", string="Preferred Days")
+    available_hours = fields.Float(string="Available Weekly Hours")

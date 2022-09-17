@@ -23,7 +23,8 @@ class TeachasController(http.Controller):
       def customer_form_submit(self, **post):
             partner = request.env['teachas'].sudo().create({
                   'time_length': post.get('time_length'),
-                  'materie': post.get('subject')
+                  'materie': post.get('subject'),
+                  'data': post.get('date')
             })
             vals = {
                   'partner': partner,

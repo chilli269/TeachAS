@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-      <template id="schedule_meeting" name="Schedule a meeting">
+      <template id="schedule_meeting_page1" name="Schedule a meeting">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
@@ -23,11 +23,13 @@
                                 </select>
                                 <label for="subject">Time Length</label>
                                 <select id="time_length" name="time_length" class="form-control">
-                                    <option value="30m">30 Minutes</option>
-                                    <option value="1h">1 Hour</option>
-                                    <option value="1h30m">1 Hour and 30 Minutes</option>
-                                    <option value="2h">2 Hours</option>
+                                    <option value="half">30 Minutes</option>
+                                    <option value="hour">One Hour</option>
+                                    <option value="hourhalf">One Hour and 30 Minutes</option>
+                                    <option value="twohours">Two Hours</option>
                                 </select>
+                                <label for="date">Date</label>
+                                <input type="date" name="date" id="date" class="form-control"/>
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
@@ -36,6 +38,47 @@
               </div>
           </t>
     </template>
+
+
+    <template id="schedule_meeting_page2" name="Schedule a meeting">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                       <form action="/schedule-meeting/submit">
+                            <div class="form-group">
+                                <!-- <label for="name">Time Length</label>
+                                <div><input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/>Hour(s)</div>
+                                <div><input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/>Minute(s)</div>
+                                <label for="hour_length">Time Length</label>
+                                <div>Hour(s)<input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/></div>
+                                <div>Minute(s)<input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/></div> -->
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject" class="form-control">
+                                    <t t-foreach="subjects" t-as="subject">
+                                        <option t-att-value="subject.id">
+                                            <t t-esc="subject.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                                <label for="subject">Time Length</label>
+                                <select id="time_length" name="time_length" class="form-control">
+                                    <option value="half">30 Minutes</option>
+                                    <option value="hour">One Hour</option>
+                                    <option value="hourhalf">One Hour and 30 Minutes</option>
+                                    <option value="twohours">Two Hours</option>
+                                </select>
+                                <label for="date">Date</label>
+                                <input type="date" name="date" id="date" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
+                    </div>
+                </div>
+              </div>
+          </t>
+    </template>
+
 
     <template id="schedule_meeting_success" name="Schedule a Meeting Successfully Submitted">
         <t t-call="website.layout">
