@@ -20,6 +20,11 @@
         <field name="model">teachas</field>
         <field name="arch" type="xml">
             <form>
+                <div class="oe_title pr-0">
+                    <h1 class="d-flex flex-row justify-content-between">
+                        <field name="interactive_session_title" attrs="{'invisible': [('is_session','=',False)]}"/>
+                    </h1>
+                </div>
                 <group>
                     <field name="materie" string="Materie"/>
                     <field name="elev" domain="[('contact_type','=','elev')]" options="{'no_quick_create': True}" string="Elev" placeholder="Elev"/>

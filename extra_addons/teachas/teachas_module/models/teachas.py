@@ -12,7 +12,10 @@ class TeachAS(models.Model):
     time_length=fields.Selection([('half','30 Minutes'),('hour','One Hour'),('hourhalf','One Hour and 30 Minutes'),('twohours','Two Hours')],'Meeting duration', required=True)
     # hour_length=fields.Integer(string="Hours")
     # minute_length=fields.Integer(string="Minutes")
+
     is_session=fields.Boolean('Is Interactive Session?', default=False)
+    interactive_session_title=fields.Char(string="Presentation Title")
+
     session_type=fields.Selection([('online', 'Online'),('fizic','Fizic'),('other','I prefer not to say')], string="Session Type")
     details=fields.Text(string="Meeting Details")
 
