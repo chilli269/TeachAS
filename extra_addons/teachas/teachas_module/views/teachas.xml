@@ -10,6 +10,7 @@
                 <field name="mentor"/>
                 <field name="data"/>
                 <field name="time_length"/>
+                <field name="session_type"/>
             </tree>
         </field>
     </record>
@@ -29,6 +30,8 @@
                     <!-- <field name="hour_length"/>
                     <field name="minute_length"/> -->
                     <field name="is_session"/>
+                    <field name="session_type"/>
+                    <field name="details"/>
                 </group>
             </form>
         </field>
@@ -37,6 +40,17 @@
     <record model="ir.ui.view" id="view_subjects_list">
         <field name="name">view_subjects_list</field>
         <field name="model">teachas.subjects</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mentori"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_days_list">
+        <field name="name">view_days_list</field>
+        <field name="model">teachas.days</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -59,6 +73,20 @@
     </record>
 
 
+    <record id="view_teachas_days_form" model="ir.ui.view">
+        <field name="name">view_teachas_days_form</field>
+        <field name="model">teachas.days</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="mentori" widget="many2many_tags" readonly="True"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
     <record model="ir.actions.act_window" id="action_teachas_module">
         <field name="name">TeachAS</field>
         <field name="res_model">teachas</field>
@@ -70,24 +98,37 @@
         <field name="res_model">teachas.subjects</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <record model="ir.actions.act_window" id="action_teachas_days_module">
+        <field name="name">TeachAS Days</field>
+        <field name="res_model">teachas.days</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     
     <menuitem id="main_menu_teachas_module"
               name="TeachAS Management Module"
               sequence="99"
               action="action_teachas_module"
               web_icon="teachas_module,static/description/icon.png"/>
-    <menuitem
-        id="main_menu_teachas_module_2"
-        name="Sessions"
-        parent="main_menu_teachas_module"
-        action="teachas_module.action_teachas_module"
-        sequence="1"/>
+
+        <menuitem
+            id="main_menu_teachas_module_2"
+            name="Sessions"
+            parent="main_menu_teachas_module"
+            action="teachas_module.action_teachas_module"
+            sequence="1"/>
 
         <menuitem id="menu_teachas_subjects_module"
                   name="Subjects/Materii"
                   parent="main_menu_teachas_module"
                   action="teachas_module.action_teachas_subjects_module"
                   sequence="2"/>
+        
+        <menuitem id="menu_teachas_days_module"
+                  name="TeachAS Days"
+                  parent="main_menu_teachas_module"
+                  action="teachas_module.action_teachas_days_module"
+                  sequence="3"/>
 
             <!-- <menuitem id="menu_teachas_module_inner"
                       name="TeachAS List"

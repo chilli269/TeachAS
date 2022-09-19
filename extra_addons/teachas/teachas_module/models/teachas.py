@@ -7,16 +7,18 @@ class TeachAS(models.Model):
     materie = fields.Many2one('teachas.subjects', string="Materie", required=True)
     mentor = fields.Many2one('res.users', string="Mentor")
     elev = fields.Many2one('res.users', string="Elev")
-    data = fields.Datetime(string="Meeting Date and Time")
+    data = fields.Date(string="Meeting Date and Time")
     # time_length = fields.Float(string = "Meeting Length(hours)")
     time_length=fields.Selection([('half','30 Minutes'),('hour','One Hour'),('hourhalf','One Hour and 30 Minutes'),('twohours','Two Hours')],'Meeting duration', required=True)
     # hour_length=fields.Integer(string="Hours")
     # minute_length=fields.Integer(string="Minutes")
     is_session=fields.Boolean('Is Interactive Session?', default=False)
+    session_type=fields.Selection([('online', 'Online'),('fizic','Fizic'),('other','I prefer not to say')], string="Session Type")
+    details=fields.Text(string="Meeting Details")
 
-    @api.onchange('minute_length')
-    def _check_minutes(self):
-        if (self.minute_length>59):
-            raise UserError('Your meeting time minutes cannot exceed 59')
+    # @api.onchange('minute_length')
+    # def _check_minutes(self):
+    #     if (self.minute_length>59):
+    #         raise UserError('Your meeting time minutes cannot exceed 59')
     
 

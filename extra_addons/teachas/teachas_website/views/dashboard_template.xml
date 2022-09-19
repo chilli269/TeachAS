@@ -16,16 +16,16 @@
                               <tr t-foreach="sessions" t-as="session">
                                     <td>
                                           <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
-                                          <p><t t-esc="session.materie.name"/></p>
+                                          <p t-field="session.materie.name"/>
                                     </td>
                                     <td>
-                                          <p><t t-esc="session.mentor.name"/></p>
+                                          <p t-field="session.mentor.name"/>
                                     </td>
                                     <td>
-                                          <p><t t-esc="session.elev.name"/></p>
+                                          <p t-field="session.elev.name"/>
                                     </td>
                                     <td>
-                                          <p><t t-esc="session.data"/></p>
+                                          <p t-field="session.data"/>
                                     </td>
                                     <td>
                                           <p t-field="session.time_length"/>
@@ -34,7 +34,7 @@
                         </table>
                   </t>
                   <!-- <t t-else="">
-                        <span>There are no upcoming sessions, please<a href="/placeholder">book one</a></span>
+                        <span>There are no upcoming sessions, please<a href="/schedule-meeting">book one</a></span>
                   </t>          -->
             </t>
       </template>

@@ -26,9 +26,14 @@ class TeachasController(http.Controller):
 
       @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
       def customer_form_submit(self, **post):
+            user_id=request.env['res.users'].browse(http.request.env.context.get('uid')).id
             partner = request.env['teachas'].sudo().create({
                   'time_length': post.get('time_length'),
-                  'materie': post.get('subject')
+                  'materie': post.get('subject'),
+                  'data': post.get('date'),
+                  'session_type': post.get('session_type'),
+                  'elev': user_id,
+                  'details': post.get('details')
             })
             vals = {
                   'partner': partner,
