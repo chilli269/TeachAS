@@ -10,6 +10,7 @@
                 <field name="mentor"/>
                 <field name="data"/>
                 <field name="time_length"/>
+                <field name="session_type"/>
             </tree>
         </field>
     </record>
@@ -29,6 +30,8 @@
                     <!-- <field name="hour_length"/>
                     <field name="minute_length"/> -->
                     <field name="is_session"/>
+                    <field name="session_type"/>
+                    <field name="details"/>
                 </group>
             </form>
         </field>
