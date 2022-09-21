@@ -1,10 +1,13 @@
-import logging
 
 from odoo import fields, http
 from odoo.http import request
 
-_logger = logging.getLogger(__name__)
 
+
+from odoo.addons.web.controllers import main
+
+import logging
+_logger = logging.getLogger(__name__)
 
 class TeachasController(http.Controller):
 
@@ -45,3 +48,20 @@ class TeachasController(http.Controller):
             'partner': partner,
         }
         return request.render("teachas_website.schedule_meeting_success", vals)
+    
+      # @http.route('/', type='http', auth='none')
+      # def index(self):
+      #       int_sessions=request.env['teachas'].search([('is_session','=',True)])
+      #       return int_sessions
+
+    @http.route(['/custom_snippets/total_interactive_sessions'],type='json',auth='public', website=True)
+    def interactive_sessions(self):
+
+        data=request.env['teachas'].search([('is_session','=',True)])
+        if data:
+            return request.env['ir.ui.view']._render_template('teachas_website.interactive_sessions_card',{
+                'data':data
+            })
+        else: return request.env['ir.ui.view']._render_template('teachas_website.session_empty')
+
+

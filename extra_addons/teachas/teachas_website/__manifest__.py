@@ -15,11 +15,13 @@
     ],
     'data': [
         'views/dashboard_template.xml',
-        'views/schedule_meeting_template.xml'
+        'views/schedule_meeting_template.xml',
+        'views/snippets/snippets.xml'
     ],
     'assets': {
         'web.assets_frontend': [
-            'teachas_website/static/src/**/*.css'
+            'teachas_website/static/src/**/*.css',
+            'teachas_website/static/src/js/teachas_snippet.js',
         ],
         'web.assets_backend': [
             
