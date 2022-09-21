@@ -75,6 +75,20 @@
         </t>
     </template>
 
+    <template id="schedule_meeting_fail" name="Not enough available mentors">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger">
+                            We are very sorry, but there are not enough mentors available at the moment.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
 
     <data>
         <record id="menu_schedule_meeting" model="website.menu">
