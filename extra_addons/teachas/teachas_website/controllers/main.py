@@ -14,11 +14,23 @@ class TeachasController(http.Controller):
     @http.route('/dashboard', type='http', auth="public", website=True)
     def dashboard(self):
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
-        sessions = request.env['teachas'].sudo().search(
-            ['|', ('elev.id', '=', user_id.id), ('mentor.id', '=', user_id.id)])
+        if not user_id.phone_number:
+            return http.request.render('teachas_website.add_your_phone_number')
+        sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
+                                                             ('mentor.id', '=', user_id.id)])
         return http.request.render('teachas_website.dashboard', {
             'sessions': sessions,
         })
+
+    @http.route('/add_phone_number/submit', type="http", auth="public", website=True)
+    def teachas_add_phone_number(self, **post):
+        add_phone_number = request.env['res.users'].browse(http.request.env.context.get('uid')).write({
+            'phone_number': post.get('phone_number')
+        })
+        vals = {
+            'phone_number': add_phone_number
+        }
+        return request.render('teachas_website.add_phone_success', vals)
 
     @http.route('/schedule-meeting', type='http', auth='public', website=True)
     def schedule_meeting(self):
@@ -33,8 +45,6 @@ class TeachasController(http.Controller):
     def customer_form_submit(self, **post):
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid')).id
         mentors = request.env['res.users'].search([('materie.id', '=', post.get('subject'))])
-        _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
-        _logger.info('\n\n sdasdasdasdas %s\n\n', post.get('preferred_day'))
         partner = request.env['teachas'].sudo().create({
             'time_length': post.get('time_length'),
             'materie': post.get('subject'),

@@ -5,7 +5,6 @@
                   <t t-if="sessions">
                         <h2>Your sessions</h2>
                         <table id="session_table" class="meetings_table">
-                              
                               <tr>
                                     <th>Class</th>
                                     <th>Mentor</th>
@@ -33,11 +32,48 @@
                               </tr>
                         </table>
                   </t>
-                  <!-- <t t-else="">
+                  <t t-else="">
                         <span>There are no upcoming sessions, please<a href="/schedule-meeting">book one</a></span>
-                  </t>          -->
+                  </t>
             </t>
       </template>
+
+
+      <template id="add_your_phone_number" name="Dashboard">
+            <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                       <form action="/add_phone_number/submit">
+                            <div class="form-group">
+                                  <label for="phone_number">Enter your phone number:</label>
+                                  <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Your Phone Number</button>
+                        </form>
+                    </div>
+                </div>
+              </div>
+          </t>
+      </template>
+
+    <template id="add_phone_success" name="Schedule a Meeting Successfully Submitted">
+        <meta http-equiv="refresh" content="0; url = /dashboard" />
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            Phone Number added successfully!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+
       <data>
             <record id="menu_dashboard" model="website.menu">
                 <field name="name">My Dashboard</field>

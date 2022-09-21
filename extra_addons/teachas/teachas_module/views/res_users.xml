@@ -12,6 +12,7 @@
                         <field name="materie" string="Materie mentor" attrs="{'invisible': [('contact_type','!=','mentor')], 'required': [('contact_type','=','mentor')]}"/>
                         <field name="available_hours"/>
                         <field name="preferred_days" widget="many2many_tags"/>
+                        <field name="phone_number" widget="phone"/>
                     </group>
                 </page>
             </xpath>
