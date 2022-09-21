@@ -43,6 +43,14 @@
                                 </div>
                                 <label for="details">Meeting Details:</label>
                                 <input type="text" id="details" name="details" minlength="5" maxlength="150" size="10" required="True" class="form-control"/>
+                                <label for="preferred_day">Preferred Day</label>
+                                <select id="preferred_day" name="preferred_day" class="form-control" required="True">
+                                    <t t-foreach="days" t-as="day">
+                                        <option t-att-value="day">
+                                            <t t-esc="day.name"/>
+                                        </option>
+                                    </t>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
