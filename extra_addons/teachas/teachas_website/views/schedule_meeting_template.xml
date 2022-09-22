@@ -46,7 +46,7 @@
                                 <label for="preferred_day">Preferred Day</label>
                                 <select id="preferred_day" name="preferred_day" class="form-control" required="True">
                                     <t t-foreach="days" t-as="day">
-                                        <option t-att-value="day">
+                                        <option t-att-value="day.id">
                                             <t t-esc="day.name"/>
                                         </option>
                                     </t>
