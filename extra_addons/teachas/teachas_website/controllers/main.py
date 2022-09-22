@@ -13,6 +13,8 @@ class TeachasController(http.Controller):
 
     @http.route('/dashboard', type='http', auth="public", website=True)
     def dashboard(self):
+        if request.env.user.id == request.env.ref('base.public_user').id:
+            return request.redirect('/web/login')
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
         if not user_id.phone_number:
             return http.request.render('teachas_website.add_your_phone_number')
@@ -22,8 +24,8 @@ class TeachasController(http.Controller):
             'sessions': sessions,
         })
 
-    @http.route('/add_phone_number/submit', type="http", auth="public", website=True)
-    def teachas_add_phone_number(self, **post):
+    @http.route('/add_phone_number/submit', type="http", auth="user", website=True)
+    def _teachas_add_phone_number(self, **post):
         add_phone_number = request.env['res.users'].browse(http.request.env.context.get('uid')).write({
             'phone_number': post.get('phone_number')
         })
@@ -34,6 +36,8 @@ class TeachasController(http.Controller):
 
     @http.route('/schedule-meeting', type='http', auth='public', website=True)
     def schedule_meeting(self):
+        if request.env.user.id == request.env.ref('base.public_user').id:
+            return request.redirect('/web/login')
         subjects = request.env['teachas.subjects'].sudo().search([])
         days = request.env['teachas.days'].sudo().search([])
         return http.request.render('teachas_website.schedule_meeting', {
@@ -41,8 +45,8 @@ class TeachasController(http.Controller):
             'days': days
         })
 
-    @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
-    def customer_form_submit(self, **post):
+    @http.route(['/schedule-meeting/submit'], type='http', auth="user", website=True)
+    def _customer_form_submit(self, **post):
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid')).id
         mentors = request.env['res.users'].search([('materie.id', '=', post.get('subject'))])
         partner = request.env['teachas'].sudo().create({

@@ -62,6 +62,7 @@
 
 
     <template id="schedule_meeting_success" name="Schedule a Meeting Successfully Submitted">
+        <meta http-equiv="refresh" content="0; url = /dashboard"/>
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
