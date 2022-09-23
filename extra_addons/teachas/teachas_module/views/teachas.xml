@@ -29,7 +29,7 @@
                     <field name="materie" string="Materie"/>
                     <field name="elev" domain="[('contact_type','=','elev')]" options="{'no_quick_create': True}" string="Elev" placeholder="Elev"/>
                     <field name="mentor" domain="[('contact_type','=','mentor')]" options="{'no_quick_create': True}" string="Mentor" placeholder="Mentor"/>
-                    <field name="data" string="Meeting Date and Time" placeholder="27 Aug, 12:35"/>
+                    <field name="data" string="Meeting Date and Time"/>
                     <!-- <field name="time_length" string = "Meeting Length(hours)" placeholder="2 Hours"/> -->
                     <field name="time_length"/>
                     <!-- <field name="hour_length"/>
@@ -37,6 +37,7 @@
                     <field name="is_session"/>
                     <field name="session_type"/>
                     <field name="details"/>
+                    <field name="meeting_link" widget="url"/>
                 </group>
             </form>
         </field>
