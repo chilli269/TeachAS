@@ -8,3 +8,4 @@ class AddContactType(models.Model):
     preferred_days = fields.Many2many("teachas.days", "mentors_preferred_days", "mentors", "preferred_days", string="Preferred Days")
     available_hours = fields.Float(string="Available Weekly Hours")
     phone_number = fields.Char(string="Phone Number")
+    exp_points = fields.Float('Experience points', default=0) #readonly=True,need to make it readonly after calculation is implemented

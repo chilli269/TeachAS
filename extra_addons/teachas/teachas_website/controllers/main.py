@@ -47,41 +47,56 @@ class TeachasController(http.Controller):
             mentors = request.env['res.users'].search([('materie.id', '=', post.get('subject'))])
             # _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
             # _logger.info('\n\n sdasdasdasdas %s\n\n', post.get('preferred_day'))
-            mentor_id=None
-            _logger.info('\n\n DATA %s\n\n', mentors)
-            _logger.info('\n\n preffered %s\n\n', post.get('preferred_day'))
-            _logger.info('\n\n subject %s\n\n', post.get('subject'))
+            # _logger.info('\n\n DATA %s\n\n', mentors)
+            # _logger.info('\n\n preffered %s\n\n', post.get('preferred_day'))
+            # _logger.info('\n\n subject %s\n\n', post.get('subject'))
             time_id=None
             if (post.get('time_length')=='half'):
                   time_id=0.5
             if (post.get('time_length')=='hour'):
                   time_id=1
-            if (post.get('hourhalf')=='half'):
+            if (post.get('time_length')=='hourhalf'):
                   time_id=1.5
-            if (post.get('twohours')=='half'):
+            if (post.get('time_length')=='twohours'):
                   time_id=2
+
             if mentors:
-                  # _logger.info('\n\n no id %s\n\n', mentors.preferred_days) returns res.users(1,) 
-                  # _logger.info('\n\n id %s\n\n', mentors.preferred_days.id) return 1 
-                  _logger.info('\n\n ids %s\n\n', mentors.preferred_days.ids) #returns [1] 
-                  aux=mentors.filtered(lambda r: post.get('preferred_day') in r.preferred_days.ids)
-                  _logger.info('\n\n AUX %s\n\n', aux)      
-                  if aux:
-                        aux2=aux=request.env['res.users'].search([('materie.id', '=', post.get('subject')), ('preferred_days.ids','=',post.get('preferred_day')),('available_hours','>=',time_id)])
-                        _logger.info('\n\n AUX2 %s\n\n', aux2)
-                        del aux
-                        if aux2:
-                              aux2.sort()
-                              _logger.info('\n\n aux2[0] %s\n\n',aux2[0])
-                              mentor_id=aux2[0]
-                              del aux2
-                        else:
-                              return request.render("teachas_website.schedule_meeting_fail")
-                  else:
+                  _logger.info('\n\n Mentors %s \n\n',mentors)
+                  aux=[]
+                  for rec in mentors:
+                        if int(post.get('preferred_day')) not in rec.preferred_days.ids:
+                              _logger.info('\n\n post %s \n\n',post.get('preferred_day'))    
+                              _logger.info('\n\n prefg %s \n\n',rec.preferred_days.ids)  
+                              _logger.info('\n\n okay sooo %s \n\n',type(rec.preferred_days.ids))
+                              _logger.info('\n\n sofro za king %s \n\n',type(rec.id))  
+                              aux.append(rec.id)
+                  # mentors2=mentors.filtered(lambda r: r.id not in aux)
+                  mentors=mentors.filtered(lambda r: r.id not in aux)            
+                  # _logger.info('\n\n Mentors2 %s \n\n',mentors)
+                  # _logger.info('\n\n aux %s \n\n',aux)
+                  # _logger.info('\n\n aux %s \n\n',type(aux))   
+                  # _logger.info('\n\n auxxxx %s \n\n',type(post.get('preferred_day'))) # returns string                   
+                  # del mentors
+
+                  if mentors:
+                        aux=[]
+                        for rec in mentors:
+                              if rec.available_hours -  time_id <0:
+                                    aux.append(rec.id)
+                        mentors=mentors.filtered_domain([('id','not in',aux)])
+                        _logger.info('\n\n Mentors3 %s \n\n',mentors)
+                        # del mentors2
+                  if mentors:
+                                          mentors=mentors.sorted(key=lambda r:r.exp_points)
+                                          _logger.info('\n\n Mentors4 %s \n\n',mentors)
+                  else: 
                         return request.render("teachas_website.schedule_meeting_fail")
+                  
             else: 
                   return request.render("teachas_website.schedule_meeting_fail")
-                        
+
+            mentors[0].available_hours-=time_id # remove hours from available time
+            
             partner = request.env['teachas'].sudo().create({
                   'time_length': post.get('time_length'),
                   'materie': post.get('subject'),
@@ -89,14 +104,12 @@ class TeachasController(http.Controller):
                   'session_type': post.get('session_type'),
                   'elev': user_id,
                   'details': post.get('details'),
-                  'mentor': mentor_id
+                  'mentor': mentors[0].id
             })
             vals = {
                   'partner': partner,
             }
             return request.render("teachas_website.schedule_meeting_success", vals)
-
-      #TODO: to delete selected hours from mentor after meeting is created
     
       # @http.route('/', type='http', auth='none')
       # def index(self):
