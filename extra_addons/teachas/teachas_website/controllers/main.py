@@ -1,29 +1,30 @@
-
 from odoo import fields, http
 from odoo.http import request
-
-
 
 from odoo.addons.web.controllers import main
 
 import logging
+
 _logger = logging.getLogger(__name__)
+
 
 class TeachasController(http.Controller):
 
     @http.route('/dashboard', type='http', auth="public", website=True)
     def dashboard(self):
+        if request.env.user.id == request.env.ref('base.public_user').id:
+            return request.redirect('/web/login')
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
         if not user_id.phone_number:
             return http.request.render('teachas_website.add_your_phone_number')
         sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
-                                                             ('mentor.id', '=', user_id.id)])
+                                                         ('mentor.id', '=', user_id.id)])
         return http.request.render('teachas_website.dashboard', {
             'sessions': sessions,
         })
 
-    @http.route('/add_phone_number/submit', type="http", auth="public", website=True)
-    def teachas_add_phone_number(self, **post):
+    @http.route('/add_phone_number/submit', type="http", auth="user", website=True)
+    def _teachas_add_phone_number(self, **post):
         add_phone_number = request.env['res.users'].browse(http.request.env.context.get('uid')).write({
             'phone_number': post.get('phone_number')
         })
@@ -34,8 +35,10 @@ class TeachasController(http.Controller):
 
     @http.route('/schedule-meeting', type='http', auth='public', website=True)
     def schedule_meeting(self):
-        subjects = request.env['teachas.subjects'].search([])
-        days = request.env['teachas.days'].search([])
+        if request.env.user.id == request.env.ref('base.public_user').id:
+            return request.redirect('/web/login')
+        subjects = request.env['teachas.subjects'].sudo().search([])
+        days = request.env['teachas.days'].sudo().search([])
         return http.request.render('teachas_website.schedule_meeting', {
             'subjects': subjects,
             'days': days
@@ -116,14 +119,18 @@ class TeachasController(http.Controller):
       #       int_sessions=request.env['teachas'].search([('is_session','=',True)])
       #       return int_sessions
 
-    @http.route(['/custom_snippets/total_interactive_sessions'],type='json',auth='public', website=True)
+    # @http.route('/', type='http', auth='none')
+    # def index(self):
+    #       int_sessions=request.env['teachas'].search([('is_session','=',True)])
+    #       return int_sessions
+
+    @http.route(['/custom_snippets/total_interactive_sessions'], type='json', auth='public', website=True)
     def interactive_sessions(self):
 
-        data=request.env['teachas'].search([('is_session','=',True)])
+        data = request.env['teachas'].search([('is_session', '=', True)])
         if data:
-            return request.env['ir.ui.view']._render_template('teachas_website.interactive_sessions_card',{
-                'data':data
+            return request.env['ir.ui.view']._render_template('teachas_website.interactive_sessions_card', {
+                'data': data
             })
-        else: return request.env['ir.ui.view']._render_template('teachas_website.session_empty')
-
-
+        else:
+            return request.env['ir.ui.view']._render_template('teachas_website.session_empty')
