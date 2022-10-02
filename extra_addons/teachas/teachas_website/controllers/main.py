@@ -26,7 +26,8 @@ class TeachasController(http.Controller):
     @http.route('/add_phone_number/submit', type="http", auth="user", website=True)
     def _teachas_add_phone_number(self, **post):
         add_phone_number = request.env['res.users'].browse(http.request.env.context.get('uid')).write({
-            'phone_number': post.get('phone_number')
+            'phone_number': post.get('phone_number'),
+            'grade_id': str(post.get('grade_id'))
         })
         vals = {
             'phone_number': add_phone_number
@@ -46,8 +47,10 @@ class TeachasController(http.Controller):
 
     @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
     def customer_form_submit(self, **post):
-            user_id = request.env['res.users'].browse(http.request.env.context.get('uid')).id
-            mentors = request.env['res.users'].search([('materie.id', '=', post.get('subject'))])
+            user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+            mentors = request.env['res.users'].search([('materie.id', '=', post.get('subject')),('grade_id','>=',user_id.grade_id)])
+            _logger.info('\n\n Comp1 %s \n\n', '8'<'9')
+            _logger.info('\n\n Comp1 %s \n\n', '10'<'11')
             # _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
             # _logger.info('\n\n sdasdasdasdas %s\n\n', post.get('preferred_day'))
             # _logger.info('\n\n DATA %s\n\n', mentors)
@@ -98,17 +101,18 @@ class TeachasController(http.Controller):
             else: 
                   return request.render("teachas_website.schedule_meeting_fail")
 
-            mentors[0].available_hours-=time_id # remove hours from available time
             
             partner = request.env['teachas'].sudo().create({
                   'time_length': post.get('time_length'),
                   'materie': post.get('subject'),
                   'data': post.get('date'),
                   'session_type': post.get('session_type'),
-                  'elev': user_id,
+                  'elev': user_id.id,
                   'details': post.get('details'),
                   'mentor': mentors[0].id
             })
+            mentors[0].available_hours-=time_id # remove hours from available time
+            mentors[0].exp_points+=8*time_id
             vals = {
                   'partner': partner,
             }

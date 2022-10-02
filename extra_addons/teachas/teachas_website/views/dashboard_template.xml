@@ -41,7 +41,7 @@
                         </table>
                   </t>
                   <t t-else="">
-                        <span>There are no upcoming sessions, please<a href="/schedule-meeting">book one</a></span>
+                        <span>There are no upcoming sessions, please <a href="/schedule-meeting">BOOK ONE</a></span>
                   </t>
             </t>
       </template>
@@ -56,8 +56,16 @@
                             <div class="form-group">
                                   <label for="phone_number">Enter your phone number:</label>
                                   <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}" class="form-control"/>
+                                  <label for="phone_number">What's your grade?</label>
+                                  <select id="grade_id" name="grade_id" class="form-control" required="True">
+                                    <option value="8">5th-8th Grade</option>
+                                    <option value="9">9th Grade</option>
+                                    <option value="10">10th Grade</option>
+                                    <option value="11">11th Grade</option>
+                                    <option value="12">12th Grade</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add Your Phone Number</button>
+                            <button type="submit" class="btn btn-primary">Add Your Phone Number and Current Grade</button>
                         </form>
                     </div>
                 </div>
