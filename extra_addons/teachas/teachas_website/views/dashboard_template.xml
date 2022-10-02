@@ -11,6 +11,8 @@
                                     <th>Student</th>
                                     <th>Meeting date</th>
                                     <th>Meeting duration</th>
+                                    <th>Meeting details</th>
+                                    <th>Meeting Link</th>
                               </tr> 
                               <tr t-foreach="sessions" t-as="session">
                                     <td>
@@ -28,6 +30,12 @@
                                     </td>
                                     <td>
                                           <p t-field="session.time_length"/>
+                                    </td>
+                                  <td>
+                                          <p t-field="session.details"/>
+                                    </td>
+                                    <td>
+                                        <a t-att-href="session.meeting_link">BAM</a>
                                     </td>
                               </tr>
                         </table>
