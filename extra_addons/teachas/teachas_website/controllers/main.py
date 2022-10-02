@@ -98,7 +98,6 @@ class TeachasController(http.Controller):
             else: 
                   return request.render("teachas_website.schedule_meeting_fail")
 
-            mentors[0].available_hours-=time_id # remove hours from available time
             
             partner = request.env['teachas'].sudo().create({
                   'time_length': post.get('time_length'),
@@ -109,6 +108,8 @@ class TeachasController(http.Controller):
                   'details': post.get('details'),
                   'mentor': mentors[0].id
             })
+            mentors[0].available_hours-=time_id # remove hours from available time
+            mentors[0].exp_points+=8*time_id
             vals = {
                   'partner': partner,
             }
