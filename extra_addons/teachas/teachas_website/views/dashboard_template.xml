@@ -47,15 +47,16 @@
       </template>
 
 
-      <template id="add_your_phone_number" name="Dashboard">
+      <template id="finish_profile" name="Finish setting up your profile">
             <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
                     <div class="col-md-12">
                        <form action="/add_phone_number/submit">
+                           <h2 style="margin-top:10px;">Finish setting up your profile!</h2>
                             <div class="form-group">
                                   <label for="phone_number">Enter your phone number:</label>
-                                  <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}" class="form-control"/>
+                                  <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}" class="form-control" required="True"/>
                                   <label for="phone_number">What's your grade?</label>
                                   <select id="grade_id" name="grade_id" class="form-control" required="True">
                                     <option value="8">5th-8th Grade</option>

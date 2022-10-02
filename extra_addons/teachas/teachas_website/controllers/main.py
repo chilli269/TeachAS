@@ -15,8 +15,8 @@ class TeachasController(http.Controller):
         if request.env.user.id == request.env.ref('base.public_user').id:
             return request.redirect('/web/login')
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
-        if not user_id.phone_number:
-            return http.request.render('teachas_website.add_your_phone_number')
+        if not user_id.phone_number or not user_id.grade_id:
+            return http.request.render('teachas_website.finish_profile')
         sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
                                                          ('mentor.id', '=', user_id.id)])
         return http.request.render('teachas_website.dashboard', {
