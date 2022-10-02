@@ -14,6 +14,7 @@
                         <field name="preferred_days" widget="many2many_tags"/>
                         <field name="phone_number" widget="phone"/>
                         <field name="exp_points"/>
+                        <field name="grade_id"/>
                     </group>
                 </page>
             </xpath>
