@@ -6,13 +6,14 @@
                         <h2>Your sessions</h2>
                         <table id="session_table" class="meetings_table">
                               <tr>
-                                    <th>Class</th>
+                                    <th>Subject</th>
                                     <th>Mentor</th>
                                     <th>Student</th>
                                     <th>Meeting date</th>
                                     <th>Meeting duration</th>
                                     <th>Meeting details</th>
                                     <th>Meeting Link</th>
+                                    <th>Mentor's Phone Number</th>
                               </tr> 
                               <tr t-foreach="sessions" t-as="session">
                                     <td>
@@ -31,11 +32,14 @@
                                     <td>
                                           <p t-field="session.time_length"/>
                                     </td>
-                                  <td>
+                                    <td>
                                           <p t-field="session.details"/>
                                     </td>
                                     <td>
                                         <a t-att-href="session.meeting_link">BAM</a>
+                                    </td>
+                                    <td>
+                                        <p t-field="session.mentor.phone_number"/>
                                     </td>
                               </tr>
                         </table>

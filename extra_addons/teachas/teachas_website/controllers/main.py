@@ -107,7 +107,7 @@ class TeachasController(http.Controller):
         partner = request.env['teachas'].sudo().create({
             'time_length': post.get('time_length'),
             'materie': post.get('subject'),
-            'data': post.get('date'),
+            # 'data': post.get('date'),
             'session_type': post.get('session_type'),
             'elev': user_id.id,
             'details': post.get('details'),

@@ -7,12 +7,6 @@
                     <div class="col-md-12">
                        <form action="/schedule-meeting/submit">
                             <div class="form-group">
-                                <!-- <label for="name">Time Length</label>
-                                <div><input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/>Hour(s)</div>
-                                <div><input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/>Minute(s)</div>
-                                <label for="hour_length">Time Length</label>
-                                <div>Hour(s)<input type="text" class="form-control" name="hour_length" id="hour_length" required="true"/></div>
-                                <div>Minute(s)<input type="text" class="form-control" name="minute_length" id="minute_length" required="true"/></div> -->
                                 <label for="subject">Subject</label>
                                 <select id="subject" name="subject" class="form-control" required="True">
                                     <t t-foreach="subjects" t-as="subject">
@@ -28,8 +22,6 @@
                                     <option value="hourhalf">One Hour and 30 Minutes</option>
                                     <option value="twohours">Two Hours</option>
                                 </select>
-                                <label for="date">Date</label>
-                                <input type="date" name="date" id="date" class="form-control" required="True"/>
                                 <p>Please select your preferred session type:</p>
                                 <div class="form-control">
                                     <input type="radio" id="online" name="session_type" value="online" required="True"/>
