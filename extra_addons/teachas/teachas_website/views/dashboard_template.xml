@@ -14,6 +14,7 @@
                                     <th>Meeting details</th>
                                     <th>Meeting Link</th>
                                     <th>Mentor's Phone Number</th>
+                                    <th>S-a desfasurat?</th>
                               </tr> 
                               <tr t-foreach="sessions" t-as="session">
                                     <td>
@@ -41,8 +42,67 @@
                                     <td>
                                         <p t-field="session.mentor.phone_number"/>
                                     </td>
+                                    <td>
+                                          <!-- <form action="/checkbox_submit">
+                                                <input type="checkbox" name="session_done" value="session_done"/>
+                                                <input type="submit" value="Submit"/>
+                                          </form> -->
+                                    </td>
                               </tr>
                         </table>
+                        <t t-if="archived_sessions">
+                              <h2>Your past sessions</h2>
+                              <table id="session_table_archived" class="meetings_table">
+                                    <tr>
+                                          <th>Subject</th>
+                                          <th>Mentor</th>
+                                          <th>Student</th>
+                                          <th>Meeting date</th>
+                                          <th>Meeting duration</th>
+                                          <th>Meeting details</th>
+                                          <th>Meeting Link</th>
+                                          <th>Mentor's Phone Number</th>
+                                          <th>S-a desfasurat?</th>
+                                    </tr> 
+                                    <tr t-foreach="archived_sessions" t-as="o">
+                                          <td>
+                                                <p t-field="o.materie.name"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.mentor.name"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.elev.name"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.data"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.time_length"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.details"/>
+                                          </td>
+                                          <td>
+                                          <a t-att-href="o.meeting_link">BAM</a>
+                                          </td>
+                                          <td>
+                                          <p t-field="o.mentor.phone_number"/>
+                                          </td>
+                                          <td>
+                                                <!-- <form action="/checkbox_submit">
+                                                      <input type="checkbox" name="session_done" value="session_done"/>
+                                                      <input type="submit" value="Submit"/>
+                                                </form> -->
+                                          </td>
+                                    </tr>
+                              </table>
+                        </t>
+                        <t t-else="">
+                              <span>You have no past sessions</span>
+                        </t>
+                        
+
                   </t>
                   <t t-else="">
                         <span>There are no upcoming sessions, please <a href="/schedule-meeting">BOOK ONE</a></span>

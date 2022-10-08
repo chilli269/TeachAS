@@ -20,9 +20,13 @@ class TeachasController(http.Controller):
                 'user': user_id,
             })
         sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
-                                                         ('mentor.id', '=', user_id.id)])
+                                                         ('mentor.id', '=', user_id.id),('stage_id','=','ongoing')])
+                                    
+        archived_sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
+                                                         ('mentor.id', '=', user_id.id),('stage_id','=','done')])
         return http.request.render('teachas_website.dashboard', {
             'sessions': sessions,
+            'archived_sessions':archived_sessions,
         })
 
     @http.route('/finish_profile/submit', type="http", auth="user", website=True)
@@ -35,6 +39,14 @@ class TeachasController(http.Controller):
             'phone_number': finish_profile
         }
         return request.render('teachas_website.profile_finished', vals)
+
+#     @http.route('/finish_profile/submit', type="http", auth="user", website=True)
+#     def _teachas_add_checkbox(self, **post):
+#         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+#         if (post.get('session_done')):
+#             if user_id.contact_type == 'elev':
+
+#         return request.redirect('/dashboard')
 
     @http.route('/schedule-meeting', type='http', auth='public', website=True)
     def schedule_meeting(self):
