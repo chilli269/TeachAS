@@ -125,7 +125,8 @@ class TeachasController(http.Controller):
             'details': post.get('details'),
             'mentor': mentors[0].id
         })
-        mentors[0].available_hours -= time_id  # remove hours from available time
+        mentors[0].available_hours -= time_id # remove hours from available time
+        mentors[0].auxiliary_hours += time_id  
         mentors[0].exp_points += 8 * time_id
         vals = {
             'partner': partner,

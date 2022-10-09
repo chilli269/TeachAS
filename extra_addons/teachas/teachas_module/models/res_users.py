@@ -1,5 +1,10 @@
 from odoo import fields, models, api
 
+from datetime import datetime
+
+import logging
+_logger = logging.getLogger(__name__)
+
 class AddContactType(models.Model):
     _inherit = "res.users"
 
@@ -10,3 +15,15 @@ class AddContactType(models.Model):
     phone_number = fields.Char(string="Phone Number")
     exp_points = fields.Float('Experience points', default=0) #readonly=True,need to make it readonly after calculation is implemented
     grade_id = fields.Selection([('8','5th-8th'),('9', '9th'),('10', '10th'),('11', '11th'),('12','12th')], string="Grade")
+
+    auxiliary_hours=fields.Float(default=0)
+
+    @api.model
+    def _available_hours_reset(self):
+
+        _logger.info('\n\n ASDASDASDASDAS \n\n')
+        if datetime.today().weekday()==6:
+            _logger.info('\n\n ok oksoakooa \n\n')
+            self.available_hours+=self.auxiliary_hours
+            self.auxiliary_hours=0
+        

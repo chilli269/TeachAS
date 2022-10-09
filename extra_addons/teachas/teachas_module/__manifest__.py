@@ -15,6 +15,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_cron_data.xml',
         'views/res_users.xml',
         'views/teachas.xml'
     ],
