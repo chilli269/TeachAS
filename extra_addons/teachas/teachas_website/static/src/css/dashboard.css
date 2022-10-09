@@ -1,5 +1,6 @@
 .meetings_table{
     width: 95%;
-    background-color: beige;
+    background-color: rgb(237, 246, 249);
+    padding: 10px;
     margin: 0 auto;
 }
