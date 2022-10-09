@@ -31,4 +31,6 @@
     'installable': True,
     'application': True,
     'auto_install': False,
+
+    # UPON INSTALLATION, CONFIGURATION OF IR.CRON IS NECESSARY
 }
