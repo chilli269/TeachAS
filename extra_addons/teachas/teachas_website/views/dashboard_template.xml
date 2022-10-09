@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-      <template id="dashboard" name="Your Dashboard">
+      <template id="dashboard" name="YourDashboard">
             <t t-call="website.layout">
                   <t t-if="sessions">
                       <h2 style="margin-top:20px; margin-left:15px;">Your sessions</h2>
@@ -14,8 +14,9 @@
                                     <th>Meeting details</th>
                                     <th>Meeting Link</th>
                                     <th>Mentor's Phone Number</th>
+                                    <th>S-a desfasurat?</th>
                               </tr> 
-                              <tr t-foreach="sessions" t-as="session">
+                              <tr t-foreach="sessions" t-as="session" t-att-data-value="session.id">
                                     <td>
                                           <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
                                           <p t-field="session.materie.name"/>
@@ -42,8 +43,57 @@
                                     <td>
                                         <p t-field="session.mentor.phone_number"/>
                                     </td>
+                                    <td>
+                                          <input type="checkbox" value="session_done" class="session_done_input" t-att-id="session.id"/>
+                                    </td>
                               </tr>
                         </table>
+                        <t t-if="archived_sessions">
+                              <h2>Your past sessions</h2>
+                              <table id="session_table_archived" class="meetings_table">
+                                    <tr>
+                                          <th>Subject</th>
+                                          <th>Mentor</th>
+                                          <th>Student</th>
+                                          <th>Meeting date</th>
+                                          <th>Meeting duration</th>
+                                          <th>Meeting details</th>
+                                          <th>Meeting Link</th>
+                                          <th>Mentor's Phone Number</th>
+                                    </tr> 
+                                    <tr t-foreach="archived_sessions" t-as="o">
+                                          <td>
+                                                <p t-field="o.materie.name"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.mentor.name"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.elev.name"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.data"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.time_length"/>
+                                          </td>
+                                          <td>
+                                                <p t-field="o.details"/>
+                                          </td>
+                                          <td>
+                                          <a t-att-href="o.meeting_link">BAM</a>
+                                          </td>
+                                          <td>
+                                          <p t-field="o.mentor.phone_number"/>
+                                          </td>
+                                    </tr>
+                              </table>
+                        </t>
+                        <t t-else="">
+                              <span>You have no past sessions</span>
+                        </t>
+                        
+
                   </t>
                   <t t-else="">
                         <span>There are no upcoming sessions, please <a href="/schedule-meeting">BOOK ONE</a></span>
@@ -107,5 +157,5 @@
                 <field name="parent_id" ref="website.main_menu"/>
                 <field name="sequence" type="int">21</field>
             </record>
-      </data>
+      </data> 
 </odoo>

@@ -20,9 +20,13 @@ class TeachasController(http.Controller):
                 'user': user_id,
             })
         sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
-                                                         ('mentor.id', '=', user_id.id)])
+                                                         ('mentor.id', '=', user_id.id),('stage_id','=','ongoing')])
+                                    
+        archived_sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
+                                                         ('mentor.id', '=', user_id.id),('stage_id','=','done')])
         return http.request.render('teachas_website.dashboard', {
             'sessions': sessions,
+            'archived_sessions':archived_sessions,
         })
 
     @http.route('/finish_profile/submit', type="http", auth="user", website=True)
@@ -35,6 +39,14 @@ class TeachasController(http.Controller):
             'phone_number': finish_profile
         }
         return request.render('teachas_website.profile_finished', vals)
+
+#     @http.route('/finish_profile/submit', type="http", auth="user", website=True)
+#     def _teachas_add_checkbox(self, **post):
+#         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+#         if (post.get('session_done')):
+#             if user_id.contact_type == 'elev':
+
+#         return request.redirect('/dashboard')
 
     @http.route('/schedule-meeting', type='http', auth='public', website=True)
     def schedule_meeting(self):
@@ -120,16 +132,6 @@ class TeachasController(http.Controller):
         }
         return request.render("teachas_website.schedule_meeting_success", vals)
 
-    # @http.route('/', type='http', auth='none')
-    # def index(self):
-    #       int_sessions=request.env['teachas'].search([('is_session','=',True)])
-    #       return int_sessions
-
-    # @http.route('/', type='http', auth='none')
-    # def index(self):
-    #       int_sessions=request.env['teachas'].search([('is_session','=',True)])
-    #       return int_sessions
-
     @http.route(['/custom_snippets/total_interactive_sessions'], type='json', auth='public', website=True)
     def interactive_sessions(self):
 
@@ -140,3 +142,25 @@ class TeachasController(http.Controller):
             })
         else:
             return request.env['ir.ui.view']._render_template('teachas_website.session_empty')
+
+    @http.route(['/check_user/check_validity'], type='json', auth='public', website=True)
+    def interactive_sessions(self,checkbox_value, parent_id):
+
+        # user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+        session_id=request.env['teachas'].browse(parent_id)
+
+        # _logger.info('\n\n oaskdoad %s \n\n',session_id) works
+        # _logger.info('\n\n asdasdad %s \n\n',user_id) works
+        # _logger.info('\n\n assdad %s \n\n',type(checkbox_value)) Boolean
+
+        if checkbox_value:
+            session_id.validity_check+=1
+        else:
+            session_id.validity_check-=1
+
+        if session_id.validity_check>=2:
+            session_id.stage_id='done'
+        else:
+            session_id.stage_id='ongoing'
+
+        return True

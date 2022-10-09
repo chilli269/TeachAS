@@ -1,6 +1,9 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError, ValidationError
 
+import logging
+_logger = logging.getLogger(__name__)
+
 
 class TeachAS(models.Model):
     _name = "teachas"
@@ -18,4 +21,9 @@ class TeachAS(models.Model):
                                     string="Session Type")
     details = fields.Text(string="Meeting Details")
     meeting_link = fields.Char(string="Meeting Link")
+
+    validity_check=fields.Integer(default=0)
+
+    stage_id=fields.Selection([('ongoing','Ongoing'),('done','Done')], default="ongoing")
+
 
