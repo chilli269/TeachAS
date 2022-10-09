@@ -1,6 +1,9 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError, ValidationError
 
+import logging
+_logger = logging.getLogger(__name__)
+
 
 class TeachAS(models.Model):
     _name = "teachas"
@@ -19,15 +22,8 @@ class TeachAS(models.Model):
     details = fields.Text(string="Meeting Details")
     meeting_link = fields.Char(string="Meeting Link")
 
-    mentor_check=fields.Boolean('Is checked by mentor', default=False)
-    student_check=fields.Boolean('Is checked by student', default=False)
+    validity_check=fields.Integer(default=0)
 
     stage_id=fields.Selection([('ongoing','Ongoing'),('done','Done')], default="ongoing")
 
-    @api.onchange('mentor_check','student_check')
-    def check_validity(self):
-        if self.mentor_check and self.student_check:
-            self.stage_id='done'
-        else:
-            self.stage_id='ongoing'
 

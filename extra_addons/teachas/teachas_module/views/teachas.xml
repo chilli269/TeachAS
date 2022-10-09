@@ -35,8 +35,7 @@
                     <field name="session_type"/>
                     <field name="details"/>
                     <field name="meeting_link" widget="url"/>
-                    <field name="mentor_check"/>
-                    <field name="student_check"/>
+                    <field name="validity_check" string="Validated"/>
                     <field name="stage_id" widget="statusbar"/>
                 </group>
             </form>

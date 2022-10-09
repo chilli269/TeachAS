@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-      <template id="dashboard" name="Your Dashboard">
+      <template id="dashboard" name="YourDashboard">
             <t t-call="website.layout">
                   <t t-if="sessions">
                         <h2>Your sessions</h2>
@@ -16,7 +16,7 @@
                                     <th>Mentor's Phone Number</th>
                                     <th>S-a desfasurat?</th>
                               </tr> 
-                              <tr t-foreach="sessions" t-as="session">
+                              <tr t-foreach="sessions" t-as="session" t-att-data-value="session.id">
                                     <td>
                                           <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
                                           <p t-field="session.materie.name"/>
@@ -43,10 +43,7 @@
                                         <p t-field="session.mentor.phone_number"/>
                                     </td>
                                     <td>
-                                          <!-- <form action="/checkbox_submit">
-                                                <input type="checkbox" name="session_done" value="session_done"/>
-                                                <input type="submit" value="Submit"/>
-                                          </form> -->
+                                          <input type="checkbox" value="session_done" class="session_done_input" t-att-id="session.id"/>
                                     </td>
                               </tr>
                         </table>
@@ -62,7 +59,6 @@
                                           <th>Meeting details</th>
                                           <th>Meeting Link</th>
                                           <th>Mentor's Phone Number</th>
-                                          <th>S-a desfasurat?</th>
                                     </tr> 
                                     <tr t-foreach="archived_sessions" t-as="o">
                                           <td>
@@ -88,12 +84,6 @@
                                           </td>
                                           <td>
                                           <p t-field="o.mentor.phone_number"/>
-                                          </td>
-                                          <td>
-                                                <!-- <form action="/checkbox_submit">
-                                                      <input type="checkbox" name="session_done" value="session_done"/>
-                                                      <input type="submit" value="Submit"/>
-                                                </form> -->
                                           </td>
                                     </tr>
                               </table>
@@ -166,5 +156,5 @@
                 <field name="parent_id" ref="website.main_menu"/>
                 <field name="sequence" type="int">21</field>
             </record>
-      </data>
+      </data> 
 </odoo>
