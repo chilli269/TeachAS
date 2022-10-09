@@ -6,7 +6,7 @@
                 <div class="container">
                     <div class="col-md-12">
                        <form action="/schedule-meeting/submit">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top:20px;">
                                 <label for="subject">Subject</label>
                                 <select id="subject" name="subject" class="form-control" required="True">
                                     <t t-foreach="subjects" t-as="subject">
@@ -59,7 +59,7 @@
             <div id="wrap">
                 <div class="container">
                     <div class="col-md-12">
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" style="margin-top:20px;">
                             Scheduled the meeting successfully.
                         </div>
                     </div>
@@ -70,10 +70,10 @@
 
     <template id="schedule_meeting_fail" name="Not enough available mentors">
         <t t-call="website.layout">
-            <div id="wrap">
+            <div id="wrap" >
                 <div class="container">
                     <div class="col-md-12">
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger" style="margin-top:20px;">
                             We are very sorry, but there are not enough mentors available at the moment.
                         </div>
                     </div>
