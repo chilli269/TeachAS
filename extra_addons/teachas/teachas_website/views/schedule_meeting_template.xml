@@ -3,11 +3,12 @@
     <template id="schedule_meeting" name="Schedule a meeting">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
+                <div class="container schedule_meeting">
                     <div class="col-md-12">
-                       <form action="/schedule-meeting/submit">
+                        <h2 style="margin-top: 20px;">Programează o întâlnire!</h2>
+                        <form action="/schedule-meeting/submit">
                             <div class="form-group" style="margin-top:20px;">
-                                <label for="subject">Subject</label>
+                                <label for="subject">Materia</label>
                                 <select id="subject" name="subject" class="form-control" required="True">
                                     <t t-foreach="subjects" t-as="subject">
                                         <option t-att-value="subject.id">
@@ -15,14 +16,14 @@
                                         </option>
                                     </t>
                                 </select>
-                                <label for="subject">Time Length</label>
+                                <label for="subject" style="margin-top:10px;">Lungimea meditației</label>
                                 <select id="time_length" name="time_length" class="form-control" required="True">
-                                    <option value="half">30 Minutes</option>
-                                    <option value="hour">One Hour</option>
-                                    <option value="hourhalf">One Hour and 30 Minutes</option>
-                                    <option value="twohours">Two Hours</option>
+                                    <option value="half">30 de minute</option>
+                                    <option value="hour">O oră</option>
+                                    <option value="hourhalf">O oră si 30 de minute</option>
+                                    <option value="twohours">Doua ore</option>
                                 </select>
-                                <p>Please select your preferred session type:</p>
+                                <label style="margin-top:10px;">Locația meditației</label>
                                 <div class="form-control">
                                     <input type="radio" id="online" name="session_type" value="online" required="True"/>
                                     <label for="online">Online</label>
@@ -31,11 +32,10 @@
                                     <label for="fizic">Fizic</label>
 
                                     <input type="radio" id="other" name="session_type" value="other" required="True"/>
-                                    <label for="other">I prefer not to say</label>
+                                    <label for="other">Nu am preferințe</label>
                                 </div>
-                                <label for="details">Meeting Details:</label>
-                                <input type="text" id="details" name="details" minlength="5" maxlength="150" size="10" required="True" class="form-control"/>
-                                <label for="preferred_day">Preferred Day</label>
+
+                                <label for="preferred_day" style="margin-top:10px;">Ziua dorită&#42;</label>
                                 <select id="preferred_day" name="preferred_day" class="form-control" required="True">
                                     <t t-foreach="days" t-as="day">
                                         <option t-att-value="day.id">
@@ -43,8 +43,14 @@
                                         </option>
                                     </t>
                                 </select>
+                                <label for="details" style="margin-top:10px;">Detalii despre întâlnire&#42;&#42;</label>
+                                <input type="text" id="details" name="details" minlength="5" maxlength="150" size="10" required="True" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">Programează o întâlnire</button>
+                            <p><strong>&#42;Ziua dorită</strong> selectată se referă la prima zi de acel tip care urmează în calendar.
+                                <br/>&#42;&#42;<strong>Detalii despre întâlnire</strong> se referă la subiectul exact al meditației (ex. Aplicații ale derivatelor),
+                                dar şi la orice alte indicații sau precizări pe care vrei să i le transmiți mentorului tău.
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -54,14 +60,19 @@
 
 
     <template id="schedule_meeting_success" name="Schedule a Meeting Successfully Submitted">
-        <meta http-equiv="refresh" content="0; url = /dashboard"/>
+<!--        <meta http-equiv="refresh" content="0; url = /dashboard"/>-->
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
                     <div class="col-md-12">
                         <div class="alert alert-success" style="margin-top:20px;">
-                            Scheduled the meeting successfully.
+                            Mulțumim pentru programarea ta!<br/>
+                            Vei fi contactat (telefonic sau pe WhatsApp) în cel mai scurt timp posibil de către unul dintre mentorii noştri,
+                            pentru a stabili împreună detaliile exacte ale întâlnirii voastre (ora şi locația).
                         </div>
+                        <form action="/dashboard">
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">Vezi meditațiile tale.</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -74,8 +85,13 @@
                 <div class="container">
                     <div class="col-md-12">
                         <div class="alert alert-danger" style="margin-top:20px;">
-                            We are very sorry, but there are not enough mentors available at the moment.
+                            Ne pare rău, dar momentan nu avem mentori disponibili pentru opțiunile selectate.
+                            <br/>Te rugăm încearcă din nou, selectând opțiunea
+                            "as soon as possible" pentru field-ul "Ziua", iar noi vom găsi un mentor pentru tine cât de repede cu putință.
                         </div>
+                        <form action="/schedule-meeting">
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">Încearca din nou.</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -85,7 +101,7 @@
 
     <data>
         <record id="menu_schedule_meeting" model="website.menu">
-            <field name="name">Schedule a meeting</field>
+            <field name="name">Programează o întâlnire!</field>
             <field name="url">/schedule-meeting</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">22</field>

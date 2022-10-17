@@ -26,4 +26,13 @@ class TeachAS(models.Model):
 
     stage_id=fields.Selection([('ongoing','Ongoing'),('done','Done')], default="ongoing")
 
+    @api.model
+    def create(self, vals):
+        res = super(TeachAS, self).create(vals)
+        template = self.env.ref('teachas_module.email_template_schedule_success')
+        _logger.info("\n\n dsadadadasdadad %s", template)
+        _logger.info("\n\n dsadadadasdadad %s", res.id)
+        template.sudo().send_mail(res.id ,force_send=True)
+        _logger.info("\n\n email send \n\n %s")
+        return res
 

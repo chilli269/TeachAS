@@ -62,8 +62,8 @@ class TeachasController(http.Controller):
     @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
     def customer_form_submit(self, **post):
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
-        mentors = request.env['res.users'].search(
-            [('materie.id', '=', post.get('subject')), ('grade_id', '>=', user_id.grade_id)])
+        mentors = request.env['res.users'].search([('materie.id', '=', post.get('subject'))])#, ('grade_id', '>=', user_id.grade_id)
+        _logger.info('\n\n Comp2 %s \n\n', user_id.grade_id)
         _logger.info('\n\n Comp1 %s \n\n', '8' < '9')
         _logger.info('\n\n Comp1 %s \n\n', '10' < '11')
         # _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
@@ -118,8 +118,8 @@ class TeachasController(http.Controller):
 
         partner = request.env['teachas'].sudo().create({
             'time_length': post.get('time_length'),
-            'materie': post.get('subject'),
-            'data': post.get('preferred_day'),
+            'materie': int(post.get('subject')),
+            'data': int(post.get('preferred_day')),
             'session_type': post.get('session_type'),
             'elev': user_id.id,
             'details': post.get('details'),
