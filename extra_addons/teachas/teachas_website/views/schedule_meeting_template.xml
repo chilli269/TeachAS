@@ -37,6 +37,7 @@
                                 <input type="text" id="details" name="details" minlength="5" maxlength="150" size="10" required="True" class="form-control"/>
                                 <label for="preferred_day">Preferred Day</label>
                                 <select id="preferred_day" name="preferred_day" class="form-control" required="True">
+                                    <option value="ASAP">ASAP</option>
                                     <t t-foreach="days" t-as="day">
                                         <option t-att-value="day.id">
                                             <t t-esc="day.name"/>

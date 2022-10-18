@@ -23,7 +23,7 @@ odoo.define('teachas_website.dashboard',function(require){
                   var checkbox_value=$(e.target).is(':checked');
                   var parent_id=$(e.target).parent().parent().data('value');
 
-                  localStorage.setItem($(e.target).attr('id'),checkbox_value)
+                  localStorage.setItem($(e.target).attr('id'),checkbox_value);
 
                   console.log('EVENT '+checkbox_value);
 
