@@ -58,8 +58,8 @@
                                           <th>Meeting date</th>
                                           <th>Meeting duration</th>
                                           <th>Meeting details</th>
-                                          <th>Meeting Link</th>
-                                          <th>Mentor's Phone Number</th>
+<!--                                          <th>Meeting Link</th>-->
+<!--                                          <th>Mentor's Phone Number</th>-->
                                     </tr> 
                                     <tr t-foreach="archived_sessions" t-as="o">
                                           <td>
@@ -80,12 +80,12 @@
                                           <td>
                                                 <p t-field="o.details"/>
                                           </td>
-                                          <td>
-                                          <a t-att-href="o.meeting_link">BAM</a>
-                                          </td>
-                                          <td>
-                                          <p t-field="o.mentor.phone_number"/>
-                                          </td>
+<!--                                          <td>-->
+<!--                                          <a t-att-href="o.meeting_link">BAM</a>-->
+<!--                                          </td>-->
+<!--                                          <td>-->
+<!--                                          <p t-field="o.mentor.phone_number"/>-->
+<!--                                          </td>-->
                                     </tr>
                               </table>
                         </t>
