@@ -102,6 +102,8 @@ class TeachasController(http.Controller):
             _logger.info('\n\n HAlelUjAHhHh \n\n')
             days=request.env['teachas.days'].search([])
             index=datetime.today().weekday()+1
+            if index>6:
+                index=0
 
             ok=True
             index_aux=index-1
