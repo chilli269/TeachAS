@@ -16,7 +16,8 @@
     'data': [
         'views/dashboard_template.xml',
         'views/schedule_meeting_template.xml',
-        'views/snippets/snippets.xml'
+        'views/snippets/snippets.xml',
+        'data/login_redirect.xml'
     ],
     'assets': {
         'web.assets_frontend': [
