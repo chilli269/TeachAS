@@ -78,12 +78,12 @@ class TeachasController(http.Controller):
     @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
     def customer_form_submit(self, **post):
         user_id = request.env['res.users'].sudo().browse(http.request.env.context.get('uid'))
-        mentors = request.env['res.users'].sudo().search(
+        mentors2 = request.env['res.users'].sudo().search(
             [('materie.id', '=', post.get('subject')), ('grade_id', '>=', user_id.grade_id)])
         _logger.info('\n\n nu mai pot %s \n\n',type(user_id.grade_id))
         # _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
         # _logger.info('\n\n sdasdasdasdas %s\n\n', post.get('preferred_day'))
-        _logger.info('\n\n DATA %s\n\n', mentors)
+        _logger.info('\n\n DATA %s\n\n', mentors2)
         # _logger.info('\n\n preffered %s\n\n', post.get('preferred_day'))
         # _logger.info('\n\n subject %s\n\n', post.get('subject'))
         time_id = None
@@ -97,7 +97,7 @@ class TeachasController(http.Controller):
             time_id = 2
         _logger.info('\n\n time %s \n\n',time_id)
 
-        if post.get('preferred_day')=='ASAP' and mentors:
+        if post.get('preferred_day')=='ASAP' and mentors2:
 
             _logger.info('\n\n HAlelUjAHhHh \n\n')
             days=request.env['teachas.days'].search([])
@@ -110,6 +110,7 @@ class TeachasController(http.Controller):
             if index_aux<0:
                 index_aux=6
             while ok:
+                mentors=mentors2
                 _logger.info('\n\n passed \n\n',)
                 if index==index_aux:
                     ok=False
@@ -172,9 +173,10 @@ class TeachasController(http.Controller):
                     index+=1
             return request.render("teachas_website.schedule_meeting_fail")
         else:
-            if mentors:
-                _logger.info('\n\n Mentors %s \n\n', mentors)
+            if mentors2:
+                _logger.info('\n\n Mentors %s \n\n', mentors2)
                 aux = []
+                mentors=mentors2
                 for rec in mentors:
                     if int(post.get('preferred_day')) not in rec.preferred_days.ids:
                         _logger.info('\n\n post %s \n\n', post.get('preferred_day'))
