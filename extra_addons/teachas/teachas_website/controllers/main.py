@@ -33,10 +33,19 @@ class TeachasController(http.Controller):
 
     @http.route('/finish_profile/submit', type="http", auth="user", website=True)
     def _teachas_add_phone_number(self, **post):
-        finish_profile = request.env['res.users'].browse(http.request.env.context.get('uid')).write({
-            'phone_number': post.get('phone_number'),
-            'grade_id': str(post.get('grade_id'))
-        })
+        if post.get("phone_number") and post.get("grade_id"):
+            finish_profile = request.env['res.users'].browse(http.request.env.context.get('uid')).sudo().write({
+                'phone_number': post.get('phone_number'),
+                'grade_id': str(post.get('grade_id'))
+            })
+        elif post.get("phone_number"):
+            finish_profile = request.env['res.users'].browse(http.request.env.context.get('uid')).sudo().write({
+                'phone_number': post.get('phone_number'),
+            })
+        elif post.get("grade_id"):
+            finish_profile = request.env['res.users'].browse(http.request.env.context.get('uid')).sudo().write({
+                'grade_id': str(post.get('grade_id')),
+            })
         vals = {
             'phone_number': finish_profile
         }
@@ -54,6 +63,11 @@ class TeachasController(http.Controller):
     def schedule_meeting(self):
         if request.env.user.id == request.env.ref('base.public_user').id:
             return request.redirect('/web/login')
+        user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+        if not user_id.phone_number or not user_id.grade_id:
+            return http.request.render('teachas_website.finish_profile', {
+                'user': user_id,
+            })
         subjects = request.env['teachas.subjects'].sudo().search([])
         days = request.env['teachas.days'].sudo().search([])
         return http.request.render('teachas_website.schedule_meeting', {
@@ -63,8 +77,8 @@ class TeachasController(http.Controller):
 
     @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
     def customer_form_submit(self, **post):
-        user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
-        mentors = request.env['res.users'].search(
+        user_id = request.env['res.users'].sudo().browse(http.request.env.context.get('uid'))
+        mentors = request.env['res.users'].sudo().search(
             [('materie.id', '=', post.get('subject')), ('grade_id', '>=', user_id.grade_id)])
         _logger.info('\n\n nu mai pot %s \n\n',type(user_id.grade_id))
         # _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
