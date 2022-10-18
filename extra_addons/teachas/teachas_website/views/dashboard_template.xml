@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-      <template id="dashboard" name="YourDashboard">
+      <template id="dashboard" name="Dashboard">
             <t t-call="website.layout">
                   <t t-if="sessions">
-                      <h2 style="margin-top:20px; margin-left:15px;">Your sessions</h2>
+                      <h2 style="margin-top:20px; margin-left:15px;">Meditațiile tale viitoare</h2>
                         <table id="session_table" class="meetings_table">
                               <tr>
-                                    <th>Subject</th>
+                                    <th>Materie</th>
                                     <th>Mentor</th>
-                                    <th>Student</th>
-                                    <th>Meeting date</th>
-                                    <th>Meeting duration</th>
-                                    <th>Meeting details</th>
-                                    <th>Meeting Link</th>
-                                    <th>Mentor's Phone Number</th>
-                                    <th>S-a desfasurat?</th>
+                                    <th>Elev</th>
+                                    <th>Ziua meditației</th>
+                                    <th>Durata meditației</th>
+                                    <th>Detalii despre întâlnire</th>
+                                    <th>Detalii exacte (oră, locație/link)</th>
+<!--                                    <th>Mentor's Phone Number</th>-->
+                                    <th>A avut loc meditația?</th>
                               </tr> 
                               <tr t-foreach="sessions" t-as="session" t-att-data-value="session.id">
                                     <td>
@@ -33,23 +33,23 @@
                                     <td>
                                           <p t-field="session.time_length"/>
                                     </td>
-                                    <td>
+                                    <td style="max-width: 350px;">
                                           <p t-field="session.details"/>
                                     </td>
                                     <td>
                                         <a t-if="session.meeting_link" t-att-href="session.meeting_link">BAM</a>
-                                        <p t-else="">Contact Mentor/Student</p>
+                                        <p t-else="">În asteptare</p>
                                     </td>
+<!--                                    <td>-->
+<!--                                        <p t-field="session.mentor.phone_number"/>-->
+<!--                                    </td>-->
                                     <td>
-                                        <p t-field="session.mentor.phone_number"/>
-                                    </td>
-                                    <td>
-                                          <input type="checkbox" value="session_done" class="session_done_input" t-att-id="session.id"/>
+                                          <input type="checkbox" value="session_done" class="session_done_input" t-att-id="session.id"/><label>  Da</label>
                                     </td>
                               </tr>
                         </table>
                         <t t-if="archived_sessions">
-                              <h2>Your past sessions</h2>
+                              <h2 style="margin-top:20px; margin-left:15px;">Meditațiile tale trecute</h2>
                               <table id="session_table_archived" class="meetings_table">
                                     <tr>
                                           <th>Subject</th>
@@ -89,10 +89,6 @@
                                     </tr>
                               </table>
                         </t>
-                        <t t-else="">
-                              <span>You have no past sessions</span>
-                        </t>
-                        
 
                   </t>
                   <t t-else="">

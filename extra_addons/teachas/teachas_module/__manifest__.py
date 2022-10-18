@@ -11,11 +11,14 @@
         'base',
         'website',
         'web',
+        'contacts',
+        'mail',
         'contacts'
     ],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
+        'data/email_templates.xml',
         'views/res_users.xml',
         'views/teachas.xml'
     ],

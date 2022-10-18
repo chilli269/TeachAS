@@ -128,7 +128,7 @@ class TeachasController(http.Controller):
                                 mentors = mentors.sorted(key=lambda r: r.exp_points)
                                 partner = request.env['teachas'].sudo().create({
                                     'time_length': post.get('time_length'),
-                                    'materie': post.get('subject'),
+                                    'materie': int(post.get('subject')),
                                     'data': days[index].id,
                                     'session_type': post.get('session_type'),
                                     'elev': user_id.id,
@@ -189,8 +189,8 @@ class TeachasController(http.Controller):
 
                     partner = request.env['teachas'].sudo().create({
                         'time_length': post.get('time_length'),
-                        'materie': post.get('subject'),
-                        'data': post.get('preferred_day'),
+                        'materie': int(post.get('subject')),
+                        'data': int(post.get('preferred_day')),
                         'session_type': post.get('session_type'),
                         'elev': user_id.id,
                         'details': post.get('details'),

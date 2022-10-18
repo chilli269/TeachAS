@@ -11,7 +11,7 @@
         'base',
         'website',
         'web',
-        'teachas_module'
+        'teachas_module',
     ],
     'data': [
         'views/dashboard_template.xml',
