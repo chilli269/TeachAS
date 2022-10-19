@@ -16,7 +16,7 @@
                             <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>
                             <th class="table_for_phone">Numărul de telefon al mentorului/elevului</th>
                             <th>A avut loc meditația?</th>
-                            <th class="more_info"></th>
+                            <th class="more_info"> </th>
                         </tr>
                         <tr t-foreach="sessions" t-as="session" t-att-data-value="session.id">
                             <td>
@@ -74,7 +74,7 @@
                             <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>
                             <th class="table_for_phone">Numărul de telefon al mentorului/elevului</th>
                             <!--                            <th>A avut loc meditația?</th>-->
-                            <th class="more_info"></th>
+                            <th class="more_info"> </th>
                         </tr>
                         <tr t-foreach="archived_sessions" t-as="session" t-att-data-value="session.id">
                             <td>
