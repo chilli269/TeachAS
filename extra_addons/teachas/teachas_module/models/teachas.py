@@ -13,8 +13,8 @@ class TeachAS(models.Model):
     elev = fields.Many2one('res.users', string="Elev")
     data = fields.Many2one('teachas.days', string="Date")
     time_length = fields.Selection(
-        [('half', '30 Minutes'), ('hour', 'One Hour'), ('hourhalf', 'One Hour and 30 Minutes'),
-         ('twohours', 'Two Hours')], 'Meeting duration', required=True)
+        [('half', '30 de minute'), ('hour', '1 oră'), ('hourhalf', '1 oră si 30 de minute'),
+         ('twohours', '2 ore')], 'Meeting duration', required=True)
     is_session = fields.Boolean('Is Interactive Session?', default=False)
     interactive_session_title = fields.Char(string="Presentation Title")
     session_type = fields.Selection([('online', 'Online'), ('fizic', 'Fizic'), ('other', 'I prefer not to say')],

@@ -17,7 +17,7 @@
                                 <tr><td valign="top" style="font-size: 13px;">
                                     <div>
                                         Salutare <t t-out="object.mentor.name or ''"/>,<br /><br />
-                                        Elevul <t t-out="object.elev.name or ''"/> are nevoie de ajutorul tău <t t-out="object.data.name or ''"/> cu o meditație la <t t-out="object.materie.name or ''"/>!<br/>
+                                        <t t-out="object.elev.name or ''"/> are nevoie de ajutorul tău <t t-out="object.data.name or ''"/> cu o meditație la <t t-out="object.materie.name or ''"/>!<br/>
                                         Loghează-te în contul tău de pe X (link către site) pentru a afla mai multe detalii despre subiectul meditației și durata acesteia.
                                         <br/>
                                         Te rugăm să îl contactezi pe elevul tău în cursul zilei de astăzi (telefonic sau pe WhatsApp), pentru a stabili împreună care este ora și locația cea mai convenabilă pentru amândoi pentru întâlnirea voastră. Numărul de telefon al elevului este: <t t-out="object.elev.phone_number or ''"/>.<br/>
