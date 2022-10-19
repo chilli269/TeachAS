@@ -7,6 +7,7 @@ odoo.define('teachas_website.dashboard',function(require){
             selector:'#session_table',
             events: {
                   'click .session_done_input': '_onInput',
+                  'click .btn_more_info': '_ShowPopup'
             },
             start:function() {
                   console.log('OKAY IT WORKS SOO')
@@ -41,6 +42,37 @@ odoo.define('teachas_website.dashboard',function(require){
                         },
                   });
 
+            },
+
+            _ShowPopup: async function(e){
+                  let teachas_session = $(e.currentTarget).parent()
+                  if (teachas_session){
+                        document.body.style.filter = "blur(6px)";
+                  }
+                  let popup = $('#popup_content')
+                  if (popup.length > 0) {
+                        popup.show();
+                        return
+                  }
+                  popup = await this._rpc({
+                        route: '/get_popup',
+                        params:{
+                              session_id: teachas_session.data('session-id'),
+                        }
+                  })
+                  if (popup) {
+                        $('body').after(popup);
+                        $('#close_button').click(function (e) {
+                              e.preventDefault();
+                              $('#popup_content').hide();
+                              document.body.style.filter = "blur(0px)";
+                        })
+                        $('#popup_cancel').click(function (e) {
+                              e.preventDefault();
+                              $('#popup_content').hide();
+                              document.body.style.filter = "blur(0px)";
+                        })
+                  }
             },
       });
       PublicWidget.registry.dashboard=Dashboard;
