@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/odoo/odoo/addons/base/data/res.country.state.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

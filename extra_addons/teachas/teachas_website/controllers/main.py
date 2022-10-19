@@ -259,3 +259,11 @@ class TeachasController(http.Controller):
             session_id.stage_id='ongoing'
 
         return True
+
+    @http.route(['/get_popup'], type='json', auth="public", website=True, sitemap=False, csrf=False)
+    def get_popup(self, session_id, **kw):
+        session = http.request.env['teachas'].sudo().browse(session_id)
+        _logger.info("\n\n ha \n\n %s", session)
+        return request.env['ir.ui.view']._render_template("teachas_website.more_info_popup_template", {
+            'session': session
+        })
