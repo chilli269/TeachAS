@@ -27,11 +27,4 @@
             <span>Sorry, there are currently no upcoming sessions</span>
       </template>
 
-
-      <template id="interactive_sessions" inherit_id="website.snippets" name="Interactive Sessions">
-            <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
-                  <t t-snippet="teachas_website.interactive_sessions_snippet"
-                        t-thumbnail="teachas_website/static/src/img/ui/snippet_icon.png"/>
-            </xpath>
-      </template>
 </odoo>

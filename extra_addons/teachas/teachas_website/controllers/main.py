@@ -1,7 +1,7 @@
 from odoo import fields, http
 from odoo.http import request
 
-from odoo.addons.web.controllers import main
+# from odoo.addons.web.controllers import main
 
 from datetime import datetime
 
@@ -30,6 +30,17 @@ class TeachasController(http.Controller):
             'sessions': sessions,
             'archived_sessions':archived_sessions,
         })
+
+    @http.route(['/custom_snippets/interactive_sessions'], type='json', auth='public', website=True)
+    def interactive_sessions_(self):
+
+        data = request.env['teachas'].search([('is_session', '=', True)])
+        if data:
+            return request.env['ir.ui.view']._render_template('teachas_website.interactive_sessions_card', {
+                'data': data
+            })
+        else:
+            return request.env['ir.ui.view']._render_template('teachas_website.session_empty')
 
     @http.route('/finish_profile/submit', type="http", auth="user", website=True)
     def _teachas_add_phone_number(self, **post):
@@ -227,19 +238,10 @@ class TeachasController(http.Controller):
                 return request.render("teachas_website.schedule_meeting_fail")
 
 
-    @http.route(['/custom_snippets/total_interactive_sessions'], type='json', auth='public', website=True)
-    def interactive_sessions(self):
-
-        data = request.env['teachas'].search([('is_session', '=', True)])
-        if data:
-            return request.env['ir.ui.view']._render_template('teachas_website.interactive_sessions_card', {
-                'data': data
-            })
-        else:
-            return request.env['ir.ui.view']._render_template('teachas_website.session_empty')
+  
 
     @http.route(['/check_user/check_validity'], type='json', auth='public', website=True)
-    def interactive_sessions(self,checkbox_value, parent_id):
+    def check_validity(self,checkbox_value, parent_id):
 
         # user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
         session_id=request.env['teachas'].browse(parent_id)
