@@ -49,12 +49,8 @@ odoo.define('teachas_website.dashboard',function(require){
                   if (teachas_session){
                         document.body.style.filter = "blur(6px)";
                   }
-                  let popup = $('#popup_content')
-                  if (popup.length > 0) {
-                        popup.show();
-                        return
-                  }
-                  popup = await this._rpc({
+
+                  let popup = await this._rpc({
                         route: '/get_popup',
                         params:{
                               session_id: teachas_session.data('session-id'),
@@ -62,14 +58,15 @@ odoo.define('teachas_website.dashboard',function(require){
                   })
                   if (popup) {
                         $('body').after(popup);
+                        $("#popup_content").fadeIn(100);
                         $('#close_button').click(function (e) {
                               e.preventDefault();
-                              $('#popup_content').hide();
+                              $('#popup_content').remove();
                               document.body.style.filter = "blur(0px)";
                         })
                         $('#popup_cancel').click(function (e) {
                               e.preventDefault();
-                              $('#popup_content').hide();
+                              $('#popup_content').remove();
                               document.body.style.filter = "blur(0px)";
                         })
                   }

@@ -6,6 +6,7 @@
 }
 
 #popup_content {
+    display: none;
     border-radius: 10px;
     width: 45vw;
     height: auto;
