@@ -19,9 +19,9 @@
                                 <label for="subject" style="margin-top:10px;">Lungimea meditației</label>
                                 <select id="time_length" name="time_length" class="form-control" required="True">
                                     <option value="half">30 de minute</option>
-                                    <option value="hour">O oră</option>
-                                    <option value="hourhalf">O oră si 30 de minute</option>
-                                    <option value="twohours">Doua ore</option>
+                                    <option value="hour">1 oră</option>
+                                    <option value="hourhalf">1 oră si 30 de minute</option>
+                                    <option value="twohours">2 ore</option>
                                 </select>
                                 <label style="margin-top:10px;">Locația meditației</label>
                                 <div class="form-control">
