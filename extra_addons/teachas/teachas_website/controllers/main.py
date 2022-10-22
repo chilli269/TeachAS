@@ -17,6 +17,8 @@ class TeachasController(http.Controller):
         if request.env.user.id == request.env.ref('base.public_user').id:
             return request.redirect('/web/login')
         user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+        _logger.info("\n\n user_type %s", user_id)
+        _logger.info("\n\n user_type %s", user_id.contact_type)
         if not user_id.phone_number or not user_id.grade_id:
             return http.request.render('teachas_website.finish_profile', {
                 'user': user_id,
@@ -26,9 +28,19 @@ class TeachasController(http.Controller):
                                     
         archived_sessions = request.env['teachas'].sudo().search(['|', ('elev.id', '=', user_id.id),
                                                          ('mentor.id', '=', user_id.id),('stage_id','=','done')])
+        if user_id.contact_type == 'mentor':
+            mentor = 1
+        else:
+            mentor = 0
+        if user_id.contact_type == 'elev':
+            elev = 1
+        else:
+            elev = 0
         return http.request.render('teachas_website.dashboard', {
             'sessions': sessions,
             'archived_sessions':archived_sessions,
+            'mentor': mentor,
+            'elev': elev
         })
 
     @http.route(['/custom_snippets/interactive_sessions'], type='json', auth='public', website=True)
@@ -266,6 +278,17 @@ class TeachasController(http.Controller):
     def get_popup(self, session_id, **kw):
         session = http.request.env['teachas'].sudo().browse(session_id)
         _logger.info("\n\n ha \n\n %s", session)
+        user_id = request.env['res.users'].browse(http.request.env.context.get('uid'))
+        if user_id.contact_type == 'mentor':
+            mentor = 1
+        else:
+            mentor = 0
+        if user_id.contact_type == 'elev':
+            elev = 1
+        else:
+            elev = 0
         return request.env['ir.ui.view']._render_template("teachas_website.more_info_popup_template", {
-            'session': session
+            'session': session,
+            'mentor':mentor,
+            'elev': elev
         })

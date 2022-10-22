@@ -49,7 +49,6 @@ odoo.define('teachas_website.dashboard',function(require){
                   if (teachas_session){
                         document.body.style.filter = "blur(6px)";
                   }
-
                   let popup = await this._rpc({
                         route: '/get_popup',
                         params:{
