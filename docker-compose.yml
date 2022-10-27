@@ -3,7 +3,6 @@ services:
   odoo:
     image: odoo:15.0
     restart: unless-stopped
-    platform: "linux/amd64"
     depends_on:
       - db
     links:
