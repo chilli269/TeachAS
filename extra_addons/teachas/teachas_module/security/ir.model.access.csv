@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_teachas,access_teachas,model_teachas,,1,1,1,1
+access_teachas_subjects,access_teachas_subjects,model_teachas_subjects,,1,1,1,1
+access_teachas_days,access_teachas_days,model_teachas_days,,1,1,1,1

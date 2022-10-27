@@ -1,0 +1,26 @@
+<odoo>
+   <data>
+       <record id="email_template_schedule_success" model="mail.template">
+            <field name="name">Mediatie programata cu succes</field>
+            <field name="email_from">"TeachAS" &lt;teachas.saguna@gmail.com></field>
+            <field name="subject">{{ object.elev.name or '' }} a programat o meditație la {{ object.materie.name or '' }}</field>
+            <field name="email_to">{{ object.mentor.login or '' }}</field>
+            <field name="model_id" ref="teachas_module.model_teachas"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html"><![CDATA[
+                                    <div>
+                                        Salutare <t t-out="object.mentor.name or ''"/>,<br /><br />
+                                        <t t-out="object.elev.name or ''"/> are nevoie de ajutorul tău <t t-out="object.data.name or ''"/> cu o meditație la <t t-out="object.materie.name or ''"/>!<br/>
+                                        Loghează-te în contul tău de pe X (link către site) pentru a afla mai multe detalii despre subiectul meditației și durata acesteia.
+                                        <br/>
+                                        Te rugăm să îl contactezi pe elevul tău în cursul zilei de astăzi (telefonic sau pe WhatsApp), pentru a stabili împreună care este ora și locația cea mai convenabilă pentru amândoi pentru întâlnirea voastră. Numărul de telefon al elevului este: <t t-out="object.elev.phone_number or ''"/>.<br/>
+                                        După ce fixați detaliile meditației, te rugăm să creezi un eveniment în Google Calendar, denumit: “Meditație <t t-out="object.materie.name or ''"/> - <t t-out="object.mentor.name or ''"/> + <t t-out="object.elev.name or ''"/>”, unde să îi adaugi ca și participanți atât pe elevul tău (cu adresa de e-mail: <t t-out="object.elev.login or ''"/>), cât și contul teachas@saguna.ro. Nu uita să scrii în Google Calendar toate detaliile evenimentului (data, ora, locația - dacă întâlnirea are loc fizic sau link-ul de Google Meet - dacă întâlnirea are loc online).<br/><br/>
+                                        Mulțumim pentru dedicarea ta!
+                                        <br/>
+                                        Echipa TeachAS
+                                    </div>
+                ]]>
+            </field>
+        </record>
+   </data>
+</odoo>

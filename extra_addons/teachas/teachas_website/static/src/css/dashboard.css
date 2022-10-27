@@ -1,0 +1,67 @@
+.meetings_table {
+    width: 95%;
+    background-color: rgb(237, 246, 249);
+    padding: 10px;
+    margin: 0 auto;
+}
+
+#popup_content {
+    display: none;
+    border-radius: 10px;
+    width: 45vw;
+    height: auto;
+    position: fixed;
+    z-index: 9999;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+}
+
+/*.took_place{*/
+/*    color: #0964d0;*/
+/*}*/
+
+#close_button {
+    color: #ce4141;
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin-top: 1%;
+    margin-right: 1%;
+    color: rgb(107, 77, 101);
+    border: 0;
+    background-color: white;
+}
+
+#popup_cancel {
+    text-align: center;
+    background-color: rgb(107, 77, 101);
+    margin-top: 2%;
+    border: 0;
+    width: 10vw;
+    height: 4vh;
+}
+
+@media screen and (max-width: 1023px) {
+    .table_for_phone {
+        display: none !important;
+    }
+
+    .more_info {
+        display: table-cell !important;
+    }
+    #popup_content {
+    width: 80vw;
+}
+}
+
+@media screen and (min-width: 1024px) {
+    .table_for_phone {
+        display: table-cell !important;
+    }
+
+    .more_info {
+        display: none !important;
+    }
+}

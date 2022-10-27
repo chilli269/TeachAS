@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="res_users_add_contact_type">
+        <field name="name">res_users_add_contact_type</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="teachas" string="TeachAS">
+                    <group>
+                        <field name="contact_type" string='Contact Type' widget="radio"/>
+                        <field name="materie" string="Materie mentor" attrs="{'invisible': [('contact_type','!=','mentor')], 'required': [('contact_type','=','mentor')]}"/>
+                        <field name="available_hours" attrs="{'invisible': [('contact_type','!=','mentor')], 'required': [('contact_type','=','mentor')]}"/>
+                        <field name="preferred_days" widget="many2many_tags" attrs="{'invisible': [('contact_type','!=','mentor')], 'required': [('contact_type','=','mentor')]}"/>
+                        <field name="phone_number" widget="phone"/>
+                        <field name="exp_points" attrs="{'invisible': [('contact_type','!=','mentor')], 'required': [('contact_type','=','mentor')]}"/>
+                        <field name="grade_id"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

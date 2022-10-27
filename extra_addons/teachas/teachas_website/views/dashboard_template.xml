@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="dashboard" name="Dashboard">
+        <t t-call="website.layout">
+            <div id="session_table">
+                <t t-if="sessions">
+                    <h2 style="margin-top:20px; margin-left:15px;">Meditațiile tale viitoare</h2>
+                    <table class="meetings_table">
+                        <tr style="margin-top:10px;">
+                            <th>Materie</th>
+                            <th class="table_for_phone">Mentor</th>
+                            <th class="table_for_phone">Elev</th>
+                            <th class="table_for_phone">Ziua meditației</th>
+                            <th class="table_for_phone">Durata meditației</th>
+                            <th class="table_for_phone">Detalii despre întâlnire</th>
+                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>
+                            <t t-if="mentor">
+                                <th class="table_for_phone">Numărul de telefon al elevului</th>
+                            </t>
+                            <t t-if="elev">
+                                <th class="table_for_phone">Numărul de telefon al mentorului</th>
+                            </t>
+                            <th>A avut loc meditația?</th>
+                            <th class="more_info"> </th>
+                        </tr>
+                        <tr t-foreach="sessions" t-as="session" t-att-data-value="session.id">
+                            <td>
+                                <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
+                                <p t-field="session.materie.name"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.mentor.name"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.elev.name"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.data"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.time_length"/>
+                            </td>
+                            <td style="max-width: 350px;" class="table_for_phone">
+                                <p t-field="session.details"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-if="session.meeting_link" t-field="session.meeting_link"/>
+                                <p t-else="">În asteptare</p>
+                            </td>
+                            <td class="table_for_phone">
+                                <t t-if="mentor">
+                                    <p t-field="session.elev.phone_number"/>
+                                </t>
+                                <t t-if="elev">
+                                    <p t-field="session.mentor.phone_number"/>
+                                </t>
+                            </td>
+                            <td>
+                                <input type="checkbox" value="session_done" class="session_done_input"
+                                       t-att-id="session.id"/>
+                                <label>Da</label>
+<!--                                <button type="button" role="button" class="btn" t-att-id="session.id">-->
+<!--                                    <i class='fa fa-bookmark-o took_place'/> Da-->
+<!--                                </button>-->
+                            </td>
+                            <td class="more_info" t-att-data-session-id="session.id">
+                                <button class="btn btn_more_info btn-primary">Află mai multe</button>
+                            </td>
+                        </tr>
+                    </table>
+                </t>
+                <t t-else="">
+                    <h2 style="margin-top:20px; margin-left:15px;">Nu ai nicio meditație viitoare, te rugăm
+                        <a href="/schedule-meeting">să programezi una.</a>
+                    </h2>
+                </t>
+                <t t-if="archived_sessions">
+                    <h2 style="margin-top:20px; margin-left:15px;">Meditațiile tale trecute</h2>
+                    <table id="session_table_archived" class="meetings_table">
+                        <tr>
+                            <th>Materie</th>
+                            <th class="table_for_phone">Mentor</th>
+                            <th class="table_for_phone">Elev</th>
+                            <th class="table_for_phone">Ziua meditației</th>
+                            <th class="table_for_phone">Durata meditației</th>
+                            <th class="table_for_phone">Detalii despre întâlnire</th>
+                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>
+                            <t t-if="mentor">
+                                <th class="table_for_phone">Numărul de telefon al elevului</th>
+                            </t>
+                            <t t-if="elev">
+                                <th class="table_for_phone">Numărul de telefon al mentorului</th>
+                            </t>
+                            <!--                            <th>A avut loc meditația?</th>-->
+                            <th class="more_info"> </th>
+                        </tr>
+                        <tr t-foreach="archived_sessions" t-as="session" t-att-data-value="session.id">
+                            <td>
+                                <!-- <a t-att-href="session.meet_link(placeholder)"><t t-esc="session.materie"/></a> to try after automatic meet link -->
+                                <p t-field="session.materie.name"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.mentor.name"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.elev.name"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.data"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-field="session.time_length"/>
+                            </td>
+                            <td style="max-width: 350px;" class="table_for_phone">
+                                <p t-field="session.details"/>
+                            </td>
+                            <td class="table_for_phone">
+                                <p t-if="session.meeting_link" t-field="session.meeting_link"/>
+                                <p t-else="">În asteptare</p>
+                            </td>
+                            <td class="table_for_phone">
+                                <t t-if="mentor">
+                                    <p t-field="session.elev.phone_number"/>
+                                </t>
+                                <t t-if="elev">
+                                    <p t-field="session.mentor.phone_number"/>
+                                </t>
+                            </td>
+                            <td class="more_info" t-att-data-session-id="session.id">
+                                <button class="btn btn_more_info btn-primary">Află mai multe</button>
+                            </td>
+                            <!--                            <td>-->
+                            <!--                                <input type="checkbox" value="session_done" class="session_done_input" t-att-id="session.id"/><label>  Da</label>-->
+                            <!--                            </td>-->
+                        </tr>
+                    </table>
+                </t>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="more_info_popup_template" name="More Info">
+        <div id="popup_content">
+            <button class="fa fa-times" id="close_button"/>
+            <div id="popup_text">
+                <h2 style="margin-top:15px; margin-left:20px;">Informații:</h2>
+                <br/>
+                <ul>
+                    <li>Materie:
+                        <t t-out="session.materie.name"/>
+                    </li>
+                    <li>Mentor:
+                        <t t-out="session.mentor.name"/>
+                    </li>
+                    <li>Elev:
+                        <t t-out="session.elev.name"/>
+                    </li>
+                    <li>Ziua meditației:
+                        <t t-out="session.data.name"/>
+                    </li>
+                    <li>Durata meditației:
+                        <span t-field="session.time_length"/>
+                    </li>
+                    <li>Detalii despre întâlnire:
+                        <t t-out="session.details"/>
+                    </li>
+                    <li>Detalii exacte (oră, locație/link):
+                        <t t-out="session.meeting_link"/>
+                    </li>
+                    <t t-if="mentor">
+                        <li>Numărul de telefon al elevului:
+                            <t t-out="session.elev.phone_number"/>
+                        </li>
+                    </t>
+                    <t t-if="elev">
+                        <li>Numărul de telefon al mentorului:
+                            <t t-out="session.mentor.phone_number"/>
+                        </li>
+                    </t>
+                </ul>
+            </div>
+            <button class="btn-danger" id="popup_cancel">Ok</button>
+        </div>
+    </template>
+
+    <template id="finish_profile" name="Completează-ți profilul!">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <form action="/finish_profile/submit">
+                            <h2 style="margin-top:10px;">Completează-ți profilul!</h2>
+                            <div class="form-group">
+                                <div t-if="not user.phone_number">
+                                    <label for="phone_number" style="margin-top:10px;">Introdu numărul de telefon:
+                                    </label>
+                                    <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}"
+                                           class="form-control" required="True"/>
+                                </div>
+                                <div t-if="not user.grade_id">
+                                    <label for="phone_number" style="margin-top:10px;">În ce clasă ești:</label>
+                                    <select id="grade_id" name="grade_id" class="form-control" required="True">
+                                        <option value="1">Clasele 5-8</option>
+                                        <option value="2">Clasa a 9-a</option>
+                                        <option value="3">Clasa a 10-a</option>
+                                        <option value="4">Clasa a 11-a</option>
+                                        <option value="5">Clasa a 12-a</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Completează-ți profilul!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="profile_finished" name="Schedule a Meeting Successfully Submitted">
+        <meta http-equiv="refresh" content="0; url = /dashboard"/>
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success" style="margin-top:20px;">
+                            Profile finished!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <data>
+        <record id="menu_dashboard" model="website.menu">
+            <field name="name">My Dashboard</field>
+            <field name="url">/dashboard</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">21</field>
+        </record>
+    </data>
+</odoo>

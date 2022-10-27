@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+      <template id="interactive_sessions_snippet" name=" Interactive Sessions">
+            <section class="js_interactive_sessions_snippet">
+                  <div class="container">
+                        <h3 class="text-center">Upcoming Interactive Sessions</h3>
+                        <div class="dynamic_snippet_template o_not_editable" id="find_me_please"/>
+                  </div>
+            </section>
+      </template>
+
+      <template id="interactive_sessions_card" name="Session Card">
+            <t t-foreach="data" t-as="o">
+                  <div class="card h-100">
+                        <h5 class="card-header" t-esc="o.materie.name"/>
+                        <div class="card-body">
+                              <div class="card-text">
+                                    <t t-esc="o.mentor.contact_type"/>
+                              </div>
+                        </div>
+                  </div>
+            </t>  
+      </template>
+      
+      <template id="session_empty" name="Empty Sessions">
+            <span>Sorry, there are currently no upcoming sessions</span>
+      </template>
+
+</odoo>
