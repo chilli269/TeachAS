@@ -70,7 +70,7 @@
                     </table>
                 </t>
                 <t t-else="">
-                    <h2 style="margin-top:20px; margin-left:15px;">Nu ai nicio meditație viitoare, te rugăm
+                    <h2 style="margin-top:20px; margin-left:50px;">Nu ai nicio meditație viitoare, te rugăm
                         <a href="/schedule-meeting">să programezi una.</a>
                     </h2>
                 </t>
