@@ -71,7 +71,7 @@
             <form>
                 <group>
                     <field name="name" string="Subjects/Materie"/>
-                    <field name="mentori" domain="[('contact_type','=','mentor')]" options="{'no_quick_create': True}" string="Mentori" readonly='True'/>
+                    <field name="mentori" domain="[('contact_type','=','mentor')]" options="{'no_quick_create': True}" string="Mentori" readonly='True' widget="many2many_tags"/>
                 </group>
             </form>
         </field>
