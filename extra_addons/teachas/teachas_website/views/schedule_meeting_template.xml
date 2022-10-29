@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="schedule_meeting" name="Schedule a meeting">
+    <template id="schedule_meeting" name="Programează o întâlnire!">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container schedule_meeting">
@@ -60,7 +60,7 @@
     </template>
 
 
-    <template id="schedule_meeting_success" name="Schedule a Meeting Successfully Submitted">
+    <template id="schedule_meeting_success" name="Întâlnire programată cu succes">
 <!--        <meta http-equiv="refresh" content="0; url = /dashboard"/>-->
         <t t-call="website.layout">
             <div id="wrap">
@@ -80,7 +80,7 @@
         </t>
     </template>
 
-    <template id="schedule_meeting_fail" name="Not enough available mentors">
+    <template id="schedule_meeting_fail" name="Niciun mentor nu este disponibil!">
         <t t-call="website.layout">
             <div id="wrap" >
                 <div class="container">
