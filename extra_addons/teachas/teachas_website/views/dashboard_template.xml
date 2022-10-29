@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="dashboard" name="Dashboard">
+    <template id="dashboard" name="Întâlnirile tale">
         <t t-call="website.layout">
             <div id="session_table">
                 <t t-if="sessions">
@@ -140,7 +140,7 @@
     </template>
 
 
-    <template id="more_info_popup_template" name="More Info">
+    <template id="more_info_popup_template" name="Mai multe informații">
         <div id="popup_content">
             <button class="fa fa-times" id="close_button"/>
             <div id="popup_text">
@@ -217,7 +217,7 @@
         </t>
     </template>
 
-    <template id="profile_finished" name="Schedule a Meeting Successfully Submitted">
+    <template id="profile_finished" name="Profil completat!">
         <meta http-equiv="refresh" content="0; url = /dashboard"/>
         <t t-call="website.layout">
             <div id="wrap">
@@ -235,7 +235,7 @@
 
     <data>
         <record id="menu_dashboard" model="website.menu">
-            <field name="name">My Dashboard</field>
+            <field name="name">Întâlnirile tale</field>
             <field name="url">/dashboard</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">21</field>
