@@ -107,6 +107,9 @@ class TeachasController(http.Controller):
         # _logger.info('\n\n sdasdasdasdas %s\n\n', mentors[2].preferred_days)
         # _logger.info('\n\n sdasdasdasdas %s\n\n', post.get('preferred_day'))
         _logger.info('\n\n DATA %s\n\n', mentors2)
+        _logger.info('\n\n DATA2 %s\n\n', user_id)
+        mentors2 = mentors2.filtered(lambda m: m.id != user_id.id)
+        _logger.info('\n\n DATA3 %s\n\n', mentors2)
         # _logger.info('\n\n preffered %s\n\n', post.get('preferred_day'))
         # _logger.info('\n\n subject %s\n\n', post.get('subject'))
         time_id = None
