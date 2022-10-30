@@ -98,6 +98,10 @@ class TeachasController(http.Controller):
             'days': days
         })
 
+    @http.route(['/politica-confidentialitate'], type='http', auth="public", website=True)
+    def gdpr(self):
+        return http.request.render('teachas_website.gdpr')
+
     @http.route(['/schedule-meeting/submit'], type='http', auth="public", website=True)
     def customer_form_submit(self, **post):
         user_id = request.env['res.users'].sudo().browse(http.request.env.context.get('uid'))

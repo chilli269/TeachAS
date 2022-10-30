@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="gdpr" name="Politica de confidențialitate">
+        <t t-call="website.layout">
+            <div id="gdpr" class="gdpr-container">
+                <br/>
+                <h5>
+                    Această politică de confidențialitate are rolul de a explica ce informații colectăm, motivul
+                    colectării și alte aspecte legate de siguranța și intimitatea ta. Te îndemnăm să urmărești cu
+                    atenție acest articol înainte de continuarea navigării pe platformă.
+                </h5>
+                <br/>
+                <h2>
+                    Ce informații colectează platforma noastră? De ce le colectăm?
+                </h2>
+                <h5>
+                    În timpul navigării pe platforma noastră, putem să colectăm o serie de informații despre tine. Am
+                    împărțit tipurile de informații în mai multe categorii, pentru ușurința înțelegerii.
+                </h5>
+                <br/>
+                <h3>
+                    Categoria 1: Date esențiale
+                </h3>
+                <h5>
+                    Aceste informații sunt esențiale pentru identificarea contului tău: adresa ta de email și parola ta,
+                    cu ajutorul cărora te poți autentifica în cont.
+                </h5>
+                <br/>
+                <h3>
+                    Categoria 2: Detalii ale contului
+                </h3>
+                <h5>
+                    Următoarele detalii sunt utile pentru personalizarea contului tău și facilitează o potrivire optimă
+                    mentor - elev.
+                </h5>
+                <ul>
+                    <li>
+                        Clasa - unui elev îi vor fi alocați doar mentori dintr-o clasă mai mare sau egală cu cea proprie
+                    </li>
+                    <li>
+                        Numărul de telefon - pentru a facilita comunicarea ușoară între mentori și elevi, TeachAS
+                        folosește numerele de telefon ale celor doi
+                    </li>
+                    <li>
+                        Tipul contului (elev/mentor)
+                    </li>
+                </ul>
+                <br/>
+                <h3>
+                    Categoria 3: Detalii legate de activitatea ta
+                </h3>
+                <h5>
+                    Pentru a preveni spamul și a cunoaște mai bine comportamentul utilizatorilor, colectăm, de asemenea,
+                    următoarele informații:
+                </h5>
+                <ul>
+                    <li>
+                        Data la care a fost creat contul;
+                    </li>
+                    <li>
+                        Ultima dată la care ai fost activ în contul tău;
+                    </li>
+                    <li>
+                        Ultima dată când ai programat o întâlnire cu un mentor TeachAS.
+                    </li>
+                </ul>
+                <br/>
+                <h2>
+                    Drepturile tale privind protecția datelor
+                </h2>
+                <h5>
+                    Ne dorim să ne asigurăm că îți cunoști drepturile când vine vorba de datele tale, în special cele cu
+                    caracter personal. Ai dreptul:
+                </h5>
+                <ul>
+                    <li>
+                        la accesul datelor tale. Poți să îți descarci o copie cu datele pe care le avem despre tine;
+                    </li>
+                    <li>
+                        la rectificarea datelor tale. Dacă consideri că există o eroare despre tine pe site-ul nostru,
+                        ne poți contacta pentru a rectifica informația.
+                    </li>
+                    <li>
+                        la ștergerea datelor tale. Dacă dorești să ștergem o informație despre tine sau chiar contul
+                        tău, poți oricând să ne contactezi;
+                    </li>
+                    <li>
+                        la restricționarea sau obiectarea procesării datelor tale. Ai dreptul să ceri ca informațiile
+                        tale să nu fie procesate;
+                    </li>
+                    <li>
+                        la portabilitatea informațiilor. Ai dreptul să ne ceri să transferam datele noastre despre tine
+                        către o altă organizație (sau către tine).
+                    </li>
+                </ul>
+                <br/>
+                <h2>
+                    Protecția datelor personale ale copiilor
+                </h2>
+                <h5>
+                    TeachAS tratează cu seriozitate protecția datelor minorilor. Așadar, TeachAS nu colectează în
+                    cunoștință de cauză date cu caracter personal ale copiilor cu vârsta mai mică de 16 ani fără acordul
+                    parental. În cazul în care descoperim că au fost, fără intenție, colectate și/sau distribuite date
+                    ale copiilor sub 16 ani în cadrul platformei noastre, vom șterge aceste informații.
+                </h5>
+                <br/>
+                <h2>
+                    Schimbări la politica de confidențialitate
+                </h2>
+                <h5>
+                    Orice schimbare se va face pe această pagină. Continuând navigarea, sunteți de acord de a verifica
+                    regulat politica de confidențialitate, pentru a fi la curent cu orice schimbare nouă.
+                </h5>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -43,7 +43,18 @@
     height: 4vh;
 }
 
-@media screen and (max-width: 1023px) {
+.gdpr-container {
+    width: 60vw;
+    margin: 0 auto;
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .gdpr-container {
+        width: 80vw;
+        margin: 0 auto;
+    }
+
     .table_for_phone {
         display: none !important;
     }
@@ -51,9 +62,10 @@
     .more_info {
         display: table-cell !important;
     }
+
     #popup_content {
-    width: 80vw;
-}
+        width: 80vw;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -63,5 +75,13 @@
 
     .more_info {
         display: none !important;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .gdpr-container {
+        width: 95vw;
+        margin: 0 auto;
     }
 }
