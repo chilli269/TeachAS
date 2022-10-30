@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="register_fields">
+
+        <div class="form-group field-login">
+            <label for="login">Adresă de email</label>
+            <input type="text" name="login" t-att-value="login" id="login" class="form-control form-control-sm"
+                   autofocus="autofocus"
+                   autocapitalize="off" required="required" t-att-readonly="'readonly' if only_passwords else None"/>
+        </div>
+
+        <div class="form-group field-name">
+            <label for="name">Nume și prenume</label>
+            <input type="text" name="name" t-att-value="name" id="name" class="form-control form-control-sm"
+                   placeholder="e.g. John Doe"
+                   required="required" t-att-readonly="'readonly' if only_passwords else None"
+                   t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+        </div>
+
+        <div class="form-group field-password pt-2">
+            <label for="password">Parolă</label>
+            <input type="password" name="password" id="password" class="form-control form-control-sm"
+                   required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>
+        </div>
+
+        <div class="form-group field-confirm_password">
+            <label for="confirm_password">Confirmare parolă</label>
+            <input type="password" name="confirm_password" id="confirm_password" class="form-control form-control-sm"
+                   required="required"/>
+        </div>
+    </template>
+
+
+    <template id="teachas_signup_redirect" inherit_id="auth_signup.signup">
+        <xpath expr="//t[@t-call='auth_signup.fields']" position="replace">
+            <t t-call="teachas_website.register_fields">
+                <t t-set="only_passwords" t-value="bool(token and not invalid_token)"/>
+            </t>
+        </xpath>
+        <xpath expr="//input[@name='redirect']" position="replace">
+            <div class="form-group field-gdpr">
+                <input type="checkbox" name="gdpr" id="gdpr" class="ford-control" required="required">
+                    Am citit <a href="/politica-confidentialitate">politica de confidențialitate</a> și
+                        sunt de acord cu colectarea datelor cu caracter personal.
+                </input>
+            </div>
+            <input type="hidden" name="redirect" value="/"/>
+        </xpath>
+        <xpath expr="//button[@type='submit']" position="replace">
+            <button type="submit" class="btn btn-primary btn-block">Creează contul!</button>
+        </xpath>
+        <xpath expr="//div/a" position="replace">
+            <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link btn-sm" role="button">Ai deja cont?</a>
+        </xpath>
+    </template>
+
+
+</odoo>

@@ -17,7 +17,9 @@
         'views/dashboard_template.xml',
         'views/schedule_meeting_template.xml',
         'views/snippets/snippets.xml',
-        'data/login_redirect.xml',
+        'views/gdpr.xml',
+        'data/login.xml',
+        'data/register.xml',
         'data/snippet_data.xml',
     ],
     'assets': {
@@ -27,7 +29,7 @@
             '/teachas_website/static/src/js/teachas_dashboard.js',
         ],
         'web.assets_backend': [
-            
+
         ],
     },
     'installable': True,
