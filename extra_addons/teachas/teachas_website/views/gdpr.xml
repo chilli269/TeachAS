@@ -4,74 +4,75 @@
         <t t-call="website.layout">
             <div id="gdpr" class="gdpr-container">
                 <br/>
-                <h5>
+                <h4>
                     Această politică de confidențialitate are rolul de a explica ce informații colectăm, motivul
                     colectării și alte aspecte legate de siguranța și intimitatea ta. Te îndemnăm să urmărești cu
                     atenție acest articol înainte de continuarea navigării pe platformă.
-                </h5>
+                </h4>
                 <br/>
-                <h2>
-                    Ce informații colectează platforma noastră? De ce le colectăm?
-                </h2>
-                <h5>
+                <h4>
+                    <strong>Ce informații colectează platforma noastră? De ce le colectăm?</strong>
+                </h4>
+                <p>
                     În timpul navigării pe platforma noastră, putem să colectăm o serie de informații despre tine. Am
                     împărțit tipurile de informații în mai multe categorii, pentru ușurința înțelegerii.
-                </h5>
+                </p>
                 <br/>
-                <h3>
-                    Categoria 1: Date esențiale
-                </h3>
                 <h5>
-                    Aceste informații sunt esențiale pentru identificarea contului tău: adresa ta de email și parola ta,
+                    <strong>Categoria 1: Date esențiale</strong>
+                </h5>
+                <p>
+                    Aceste informații sunt esențiale pentru identificarea contului tău: <u>adresa ta de email</u> și <u>
+                    parola ta</u>,
                     cu ajutorul cărora te poți autentifica în cont.
-                </h5>
+                </p>
                 <br/>
-                <h3>
-                    Categoria 2: Detalii ale contului
-                </h3>
                 <h5>
+                    <strong>Categoria 2: Detalii ale contului</strong>
+                </h5>
+                <p>
                     Următoarele detalii sunt utile pentru personalizarea contului tău și facilitează o potrivire optimă
                     mentor - elev.
-                </h5>
+                </p>
                 <ul>
                     <li>
-                        Clasa - unui elev îi vor fi alocați doar mentori dintr-o clasă mai mare sau egală cu cea proprie
+                        <u>Clasa</u> - unui elev îi vor fi alocați doar mentori dintr-o clasă mai mare sau egală cu cea proprie
                     </li>
                     <li>
-                        Numărul de telefon - pentru a facilita comunicarea ușoară între mentori și elevi, TeachAS
+                        <u>Numărul de telefon</u> - pentru a facilita comunicarea ușoară între mentori și elevi, TeachAS
                         folosește numerele de telefon ale celor doi
                     </li>
                     <li>
-                        Tipul contului (elev/mentor)
+                        <u>Tipul contului</u> (elev/mentor)
                     </li>
                 </ul>
                 <br/>
-                <h3>
-                    Categoria 3: Detalii legate de activitatea ta
-                </h3>
                 <h5>
+                    <strong>Categoria 3: Detalii legate de activitatea ta</strong>
+                </h5>
+                <p>
                     Pentru a preveni spamul și a cunoaște mai bine comportamentul utilizatorilor, colectăm, de asemenea,
                     următoarele informații:
-                </h5>
+                </p>
                 <ul>
                     <li>
-                        Data la care a fost creat contul;
+                        <u>Data la care a fost creat contul;</u>
                     </li>
                     <li>
-                        Ultima dată la care ai fost activ în contul tău;
+                        <u>Ultima dată la care ai fost activ în contul tău;</u>
                     </li>
                     <li>
-                        Ultima dată când ai programat o întâlnire cu un mentor TeachAS.
+                        <u>Ultima dată când ai programat o întâlnire cu un mentor TeachAS.</u>
                     </li>
                 </ul>
                 <br/>
-                <h2>
-                    Drepturile tale privind protecția datelor
-                </h2>
-                <h5>
+                <h4>
+                    <strong>Drepturile tale privind protecția datelor</strong>
+                </h4>
+                <p>
                     Ne dorim să ne asigurăm că îți cunoști drepturile când vine vorba de datele tale, în special cele cu
                     caracter personal. Ai dreptul:
-                </h5>
+                </p>
                 <ul>
                     <li>
                         la accesul datelor tale. Poți să îți descarci o copie cu datele pe care le avem despre tine;
@@ -94,23 +95,23 @@
                     </li>
                 </ul>
                 <br/>
-                <h2>
-                    Protecția datelor personale ale copiilor
-                </h2>
-                <h5>
+                <h4>
+                    <strong>Protecția datelor personale ale copiilor</strong>
+                </h4>
+                <p>
                     TeachAS tratează cu seriozitate protecția datelor minorilor. Așadar, TeachAS nu colectează în
                     cunoștință de cauză date cu caracter personal ale copiilor cu vârsta mai mică de 16 ani fără acordul
                     parental. În cazul în care descoperim că au fost, fără intenție, colectate și/sau distribuite date
                     ale copiilor sub 16 ani în cadrul platformei noastre, vom șterge aceste informații.
-                </h5>
+                </p>
                 <br/>
-                <h2>
-                    Schimbări la politica de confidențialitate
-                </h2>
-                <h5>
+                <h4>
+                    <strong>Schimbări la politica de confidențialitate</strong>
+                </h4>
+                <p>
                     Orice schimbare se va face pe această pagină. Continuând navigarea, sunteți de acord de a verifica
                     regulat politica de confidențialitate, pentru a fi la curent cu orice schimbare nouă.
-                </h5>
+                </p>
             </div>
         </t>
     </template>
