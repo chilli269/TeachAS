@@ -84,4 +84,15 @@
         width: 95vw;
         margin: 0 auto;
     }
+    .table_for_phone {
+        display: none !important;
+    }
+
+    .more_info {
+        display: table-cell !important;
+    }
+
+    #popup_content {
+        width: 80vw;
+    }
 }
