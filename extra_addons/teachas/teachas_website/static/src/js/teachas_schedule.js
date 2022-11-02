@@ -12,7 +12,11 @@ odoo.define('teachas_website.schedule_meeting', function (require) {
             console.log('OKAY IT WORKS SOO')
         },
         _onClickDisableButton: function () {
-            $(".schedule_meeting_submit").hide();
+            let x = document.forms["ScheduleMeeting"]["session_type"].value;
+            let z = document.forms["ScheduleMeeting"]["details"].value;
+            if (x && z){
+                $(".schedule_meeting_submit").hide();
+            }
             console.log("mama");
         }
     });
