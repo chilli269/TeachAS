@@ -26,7 +26,8 @@
         'web.assets_frontend': [
             'teachas_website/static/src/css/*.css',
             'teachas_website/static/src/js/teachas_snippet.js',
-            '/teachas_website/static/src/js/teachas_dashboard.js',
+            'teachas_website/static/src/js/teachas_dashboard.js',
+            'teachas_website/static/src/js/teachas_schedule.js',
         ],
         'web.assets_backend': [
 

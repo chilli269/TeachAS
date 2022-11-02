@@ -47,7 +47,7 @@
                                 <label for="details" style="margin-top:10px;">Detalii despre întâlnire&#42;&#42;</label>
                                 <input type="text" id="details" name="details" minlength="5" maxlength="150" size="10" required="True" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">Programează o întâlnire</button>
+                            <button type="submit" class="btn btn-primary schedule_meeting_submit" style="margin-bottom:15px;">Programează o întâlnire</button>
                             <p><strong>&#42;Ziua dorită</strong> selectată se referă la prima zi de acel tip care urmează în calendar.
                                 <br/>&#42;&#42;<strong>Detalii despre întâlnire</strong> se referă la subiectul exact al meditației (ex. Aplicații ale derivatelor),
                                 dar şi la orice alte indicații sau precizări pe care vrei să i le transmiți mentorului tău.
