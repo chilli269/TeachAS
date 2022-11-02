@@ -37,7 +37,7 @@
                     <field name="details"/>
                     <field name="meeting_link" widget="url"/>
                     <field name="validity_check" string="Validated"/>
-                    <field name="stage_id" widget="statusbar"/>
+                    <field name="stage_id" widget="radio" readonly="False"/>
                     <field name="create_date"/>
                 </group>
             </form>
