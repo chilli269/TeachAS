@@ -6,7 +6,7 @@
                 <div class="container schedule_meeting">
                     <div class="col-md-12">
                         <h2 style="margin-top: 20px;">Programează o întâlnire!</h2>
-                        <form action="/schedule-meeting/submit">
+                        <form name="ScheduleMeeting" action="/schedule-meeting/submit">
                             <div class="form-group" style="margin-top:20px;">
                                 <label for="subject">Materia</label>
                                 <select id="subject" name="subject" class="form-control" required="True">
@@ -45,7 +45,7 @@
                                     </t>
                                 </select>
                                 <label for="details" style="margin-top:10px;">Detalii despre întâlnire&#42;&#42;</label>
-                                <input type="text" id="details" name="details" minlength="5" maxlength="150" size="10" required="True" class="form-control"/>
+                                <input type="text" id="details" name="details" maxlength="150" size="10" required="True" class="form-control"/>
                             </div>
                             <button type="submit" class="btn btn-primary schedule_meeting_submit" style="margin-bottom:15px;">Programează o întâlnire</button>
                             <p><strong>&#42;Ziua dorită</strong> selectată se referă la prima zi de acel tip care urmează în calendar.
