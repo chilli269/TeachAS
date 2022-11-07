@@ -49,7 +49,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary schedule_meeting_submit" style="margin-bottom:15px;">Programează o întâlnire</button>
                             <p><strong>&#42;Ziua dorită</strong> selectată se referă la prima zi de acel tip care urmează în calendar.
-                                <br/>&#42;&#42;<strong>Detalii despre întâlnire</strong> se referă la subiectul exact al meditației (ex. Aplicații ale derivatelor),
+                                <br/><strong>&#42;&#42;Detalii despre întâlnire</strong> se referă la subiectul exact al meditației (ex. Aplicații ale derivatelor),
                                 dar şi la orice alte indicații sau precizări pe care vrei să i le transmiți mentorului tău.
                             </p>
                         </form>
