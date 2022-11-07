@@ -18,12 +18,9 @@ class AddContactType(models.Model):
 
     auxiliary_hours=fields.Float(default=0)
 
-    @api.model
     def _available_hours_reset(self):
-
-        _logger.info('\n\n ASDASDASDASDAS \n\n')
-        if datetime.today().weekday()==6:
-            _logger.info('\n\n ok oksoakooa \n\n')
-            self.available_hours+=self.auxiliary_hours
-            self.auxiliary_hours=0
+        records = self.sudo().search([])
+        for rec in records:
+            rec.available_hours += rec.auxiliary_hours
+            rec.auxiliary_hours = 0
         
