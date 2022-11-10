@@ -13,7 +13,7 @@
                             <th class="table_for_phone">Ziua meditației</th>
                             <th class="table_for_phone">Durata meditației</th>
                             <th class="table_for_phone">Detalii despre întâlnire</th>
-                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>
+                            <!--                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>-->
                             <t t-if="mentor">
                                 <th class="table_for_phone">Numărul de telefon al elevului</th>
                             </t>
@@ -21,7 +21,7 @@
                                 <th class="table_for_phone">Numărul de telefon al mentorului</th>
                             </t>
                             <th>A avut loc meditația?</th>
-                            <th class="more_info"> </th>
+                            <th class="more_info"></th>
                         </tr>
                         <tr t-foreach="sessions" t-as="session" t-att-data-value="session.id">
                             <td>
@@ -43,15 +43,15 @@
                             <td style="max-width: 350px;" class="table_for_phone">
                                 <p t-field="session.details"/>
                             </td>
+                            <!--                            <td class="table_for_phone">-->
+                            <!--                                <p t-if="session.meeting_link" t-field="session.meeting_link"/>-->
+                            <!--                                <p t-else="">În asteptare</p>-->
+                            <!--                            </td>-->
                             <td class="table_for_phone">
-                                <p t-if="session.meeting_link" t-field="session.meeting_link"/>
-                                <p t-else="">În asteptare</p>
-                            </td>
-                            <td class="table_for_phone">
-                                <t t-if="mentor">
+                                <t t-if="elev">
                                     <p t-field="session.elev.phone_number"/>
                                 </t>
-                                <t t-if="elev">
+                                <t t-if="mentor">
                                     <p t-field="session.mentor.phone_number"/>
                                 </t>
                             </td>
@@ -59,9 +59,9 @@
                                 <input type="checkbox" value="session_done" class="session_done_input"
                                        t-att-id="session.id"/>
                                 <label>Da</label>
-<!--                                <button type="button" role="button" class="btn" t-att-id="session.id">-->
-<!--                                    <i class='fa fa-bookmark-o took_place'/> Da-->
-<!--                                </button>-->
+                                <!--                                <button type="button" role="button" class="btn" t-att-id="session.id">-->
+                                <!--                                    <i class='fa fa-bookmark-o took_place'/> Da-->
+                                <!--                                </button>-->
                             </td>
                             <td class="more_info" t-att-data-session-id="session.id">
                                 <button class="btn btn_more_info btn-primary">Află mai multe</button>
@@ -84,7 +84,7 @@
                             <th class="table_for_phone">Ziua meditației</th>
                             <th class="table_for_phone">Durata meditației</th>
                             <th class="table_for_phone">Detalii despre întâlnire</th>
-                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>
+                            <!--                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>-->
                             <t t-if="mentor">
                                 <th class="table_for_phone">Numărul de telefon al elevului</th>
                             </t>
@@ -92,7 +92,7 @@
                                 <th class="table_for_phone">Numărul de telefon al mentorului</th>
                             </t>
                             <!--                            <th>A avut loc meditația?</th>-->
-                            <th class="more_info"> </th>
+                            <th class="more_info"></th>
                         </tr>
                         <tr t-foreach="archived_sessions" t-as="session" t-att-data-value="session.id">
                             <td>
@@ -114,21 +114,30 @@
                             <td style="max-width: 350px;" class="table_for_phone">
                                 <p t-field="session.details"/>
                             </td>
+                            <!--                            <td class="table_for_phone">-->
+                            <!--                                <p t-if="session.meeting_link" t-field="session.meeting_link"/>-->
+                            <!--                                <p t-else="">În asteptare</p>-->
+                            <!--                            </td>-->
                             <td class="table_for_phone">
-                                <p t-if="session.meeting_link" t-field="session.meeting_link"/>
-                                <p t-else="">În asteptare</p>
-                            </td>
-                            <td class="table_for_phone">
-                                <t t-if="mentor">
+                                <t t-if="elev">
                                     <p t-field="session.elev.phone_number"/>
                                 </t>
-                                <t t-if="elev">
+                                <t t-if="mentor">
                                     <p t-field="session.mentor.phone_number"/>
                                 </t>
                             </td>
                             <td class="more_info" t-att-data-session-id="session.id">
                                 <button class="btn btn_more_info btn-primary">Află mai multe</button>
                             </td>
+                            <t t-if="mentor">
+                                <td class="reschedule_meeting table_for_phone">
+                                    <form t-attf-action="/reschedule-meeting/#{session.id}">
+                                        <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">
+                                            Reprogramează
+                                        </button>
+                                    </form>
+                                </td>
+                            </t>
                             <!--                            <td>-->
                             <!--                                <input type="checkbox" value="session_done" class="session_done_input" t-att-id="session.id"/><label>  Da</label>-->
                             <!--                            </td>-->
@@ -165,18 +174,26 @@
                     <li>Detalii despre întâlnire:
                         <t t-out="session.details"/>
                     </li>
-                    <li>Detalii exacte (oră, locație/link):
-                        <t t-out="session.meeting_link"/>
-                    </li>
-                    <t t-if="mentor">
+                    <!--                    <li>Detalii exacte (oră, locație/link):-->
+                    <!--                        <t t-out="session.meeting_link"/>-->
+                    <!--                    </li>-->
+                    <t t-if="elev">
                         <li>Numărul de telefon al elevului:
                             <t t-out="session.elev.phone_number"/>
                         </li>
                     </t>
-                    <t t-if="elev">
+                    <t t-if="mentor">
                         <li>Numărul de telefon al mentorului:
                             <t t-out="session.mentor.phone_number"/>
                         </li>
+                        <br/>
+                        <t t-if="session.stage_id == 'done'">
+                            <form t-attf-action="/reschedule-meeting/#{session.id}">
+                                <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">
+                                    Reprogramează
+                                </button>
+                            </form>
+                        </t>
                     </t>
                 </ul>
             </div>
