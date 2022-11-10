@@ -14,10 +14,10 @@
                             <th class="table_for_phone">Durata meditației</th>
                             <th class="table_for_phone">Detalii despre întâlnire</th>
                             <!--                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>-->
-                            <t t-if="mentor">
+                            <t t-if="elev">
                                 <th class="table_for_phone">Numărul de telefon al elevului</th>
                             </t>
-                            <t t-if="elev">
+                            <t t-if="mentor">
                                 <th class="table_for_phone">Numărul de telefon al mentorului</th>
                             </t>
                             <th>A avut loc meditația?</th>
@@ -48,10 +48,10 @@
                             <!--                                <p t-else="">În asteptare</p>-->
                             <!--                            </td>-->
                             <td class="table_for_phone">
-                                <t t-if="elev">
+                                <t t-if="mentor">
                                     <p t-field="session.elev.phone_number"/>
                                 </t>
-                                <t t-if="mentor">
+                                <t t-if="elev">
                                     <p t-field="session.mentor.phone_number"/>
                                 </t>
                             </td>
@@ -119,10 +119,10 @@
                             <!--                                <p t-else="">În asteptare</p>-->
                             <!--                            </td>-->
                             <td class="table_for_phone">
-                                <t t-if="elev">
+                                <t t-if="mentor">
                                     <p t-field="session.elev.phone_number"/>
                                 </t>
-                                <t t-if="mentor">
+                                <t t-if="elev">
                                     <p t-field="session.mentor.phone_number"/>
                                 </t>
                             </td>
@@ -177,12 +177,12 @@
                     <!--                    <li>Detalii exacte (oră, locație/link):-->
                     <!--                        <t t-out="session.meeting_link"/>-->
                     <!--                    </li>-->
-                    <t t-if="elev">
+                    <t t-if="mentor">
                         <li>Numărul de telefon al elevului:
                             <t t-out="session.elev.phone_number"/>
                         </li>
                     </t>
-                    <t t-if="mentor">
+                    <t t-if="elev">
                         <li>Numărul de telefon al mentorului:
                             <t t-out="session.mentor.phone_number"/>
                         </li>
