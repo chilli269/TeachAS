@@ -129,7 +129,7 @@
                             <td class="more_info" t-att-data-session-id="session.id">
                                 <button class="btn btn_more_info btn-primary">Află mai multe</button>
                             </td>
-                            <t t-if="mentor">
+                            <t t-if="elev">
                                 <td class="reschedule_meeting table_for_phone">
                                     <form t-attf-action="/reschedule-meeting/#{session.id}">
                                         <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">
