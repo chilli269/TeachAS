@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reschedule_meeting" name="Reprogramează o întâlnire!">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container schedule_meeting">
+                    <div class="col-md-12">
+                        <h2 style="margin-top: 20px;">Programează o întâlnire!</h2>
+                        <form name="RescheduleMeeting" action="/reschedule-meeting/submit">
+                            <div class="form-group" style="margin-top:20px;">
+                                <input id="subject" name="subject" t-attf-value="#{meeting.materie.id}" hidden="true"/>
+                                <input id="mentor" name="mentor" t-attf-value="#{meeting.mentor.id}" hidden="true"/>
+                                <label for="subject" style="margin-top:10px;">Lungimea meditației</label>
+                                <select id="time_length" name="time_length" class="form-control" required="True">
+                                    <option value="half">30 de minute</option>
+                                    <option value="hour">1 oră</option>
+                                    <option value="hourhalf">1 oră si 30 de minute</option>
+                                    <option value="twohours">2 ore</option>
+                                </select>
+                                <label style="margin-top:10px;">Locația meditației</label>
+                                <div class="form-control">
+                                    <input type="radio" id="online" name="session_type" value="online" required="True"/>
+                                    <label for="online">Online</label>
+
+                                    <input type="radio" id="fizic" name="session_type" value="fizic" required="True"/>
+                                    <label for="fizic">Fizic</label>
+
+                                    <input type="radio" id="other" name="session_type" value="other" required="True"/>
+                                    <label for="other">Nu am preferințe</label>
+                                </div>
+
+                                <label for="preferred_day" style="margin-top:10px;">Ziua dorită&#42;</label>
+                                <select id="preferred_day" name="preferred_day" class="form-control" required="True">
+                                    <t t-foreach="meeting.mentor.preferred_days" t-as="day">
+                                        <option t-att-value="day.id">
+                                            <t t-esc="day.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                                <label for="details" style="margin-top:10px;">Detalii despre întâlnire&#42;&#42;</label>
+                                <input type="text" id="details" name="details" maxlength="150" size="10" required="True" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary reschedule_meeting_submit" style="margin-bottom:15px;">Programează o întâlnire</button>
+                            <p><strong>&#42;Ziua dorită</strong> selectată se referă la prima zi de acel tip care urmează în calendar.
+                                <br/><strong>&#42;&#42;Detalii despre întâlnire</strong> se referă la subiectul exact al meditației (ex. Aplicații ale derivatelor),
+                                dar şi la orice alte indicații sau precizări pe care vrei să i le transmiți mentorului tău.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

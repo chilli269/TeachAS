@@ -281,6 +281,45 @@ class TeachasController(http.Controller):
 
         return True
 
+    @http.route('/reschedule-meeting/<model("teachas"):meeting>', type='http', auth='public', website=True)
+    def reschedule_meeting(self, meeting):
+        return request.render("teachas_website.reschedule_meeting", {
+            'meeting': meeting,
+        })
+
+    @http.route('/reschedule-meeting/submit', type='http', auth='public', website=True)
+    def reschedule_meeting_submit(self, **post):
+        user_id = request.env['res.users'].sudo().browse(http.request.env.context.get('uid'))
+        mentor = request.env['res.users'].sudo().browse(int(post.get('mentor')))
+        if (post.get('time_length') == 'half'):
+            time_id = 0.5
+        if (post.get('time_length') == 'hour'):
+            time_id = 1
+        if (post.get('time_length') == 'hourhalf'):
+            time_id = 1.5
+        if (post.get('time_length') == 'twohours'):
+            time_id = 2
+
+        if mentor.available_hours > 0:
+            meeting = request.env['teachas'].sudo().create({
+                    'time_length': post.get('time_length'),
+                    'materie': int(post.get('subject')),
+                    'data': int(post.get('preferred_day')),
+                    'session_type': post.get('session_type'),
+                    'elev': user_id.id,
+                    'details': post.get('details'),
+                    'mentor': mentor.id
+                })
+        else:
+            return request.render("teachas_website.schedule_meeting_fail")
+        mentor.available_hours -= time_id  # remove hours from available time
+        mentor.auxiliary_hours += time_id
+        mentor.exp_points += 8 * time_id
+        vals = {
+            'meeting': meeting,
+        }
+        return request.render("teachas_website.schedule_meeting_success", vals)
+
     @http.route(['/get_popup'], type='json', auth="public", website=True, sitemap=False, csrf=False)
     def get_popup(self, session_id, **kw):
         session = http.request.env['teachas'].sudo().browse(session_id)
