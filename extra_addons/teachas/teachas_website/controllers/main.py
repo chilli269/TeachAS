@@ -300,7 +300,7 @@ class TeachasController(http.Controller):
         if (post.get('time_length') == 'twohours'):
             time_id = 2
 
-        if mentor.available_hours > 0:
+        if mentor.available_hours - time_id >= 0:
             meeting = request.env['teachas'].sudo().create({
                     'time_length': post.get('time_length'),
                     'materie': int(post.get('subject')),
@@ -315,6 +315,7 @@ class TeachasController(http.Controller):
         mentor.available_hours -= time_id  # remove hours from available time
         mentor.auxiliary_hours += time_id
         mentor.exp_points += 8 * time_id
+        _logger.info('\n\n S-A REPROGRAMAT %s \n\n')
         vals = {
             'meeting': meeting,
         }
