@@ -339,3 +339,13 @@ class TeachasController(http.Controller):
             'mentor':mentor,
             'elev': elev
         })
+
+    @http.route(['/info++/marketing/mail/send'], type='http', auth='user', website=True)
+    def marketing_info10(self):
+        template = request.env.ref('teachas_module.info++_marketing')
+        users = request.env["res.users"].sudo().search([])
+        _logger.info('\n\n users \n\n %s', users)
+        for rec in users:
+            template.sudo().send_mail(rec.id, force_send=True)
+            _logger.info('\n\n email send \n\n')
+        return request.redirect('/')

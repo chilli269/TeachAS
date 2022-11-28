@@ -1,9 +1,11 @@
 <odoo>
-   <data>
-       <record id="email_template_schedule_success" model="mail.template">
+    <data>
+        <record id="email_template_schedule_success" model="mail.template">
             <field name="name">Mediatie programata cu succes</field>
             <field name="email_from">"TeachAS" &lt;teachas.saguna@gmail.com></field>
-            <field name="subject">{{ object.elev.name or '' }} a programat o meditație la {{ object.materie.name or '' }}</field>
+            <field name="subject">{{ object.elev.name or '' }} a programat o meditație la {{ object.materie.name or ''
+                }}
+            </field>
             <field name="email_to">{{ object.mentor.login or '' }}</field>
             <field name="model_id" ref="teachas_module.model_teachas"/>
             <field name="auto_delete" eval="False"/>
@@ -22,5 +24,24 @@
                 ]]>
             </field>
         </record>
-   </data>
+
+        <record id="info++_marketing" model="mail.template">
+            <field name="name">info++_marketing</field>
+            <field name="email_from">"TeachAS" &lt;teachas.saguna@gmail.com></field>
+            <field name="subject">Curs Săptămânal „Info++ pentru 10 în BAC”</field>
+            <field name="email_to">{{ object.login or '' }}</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html"><![CDATA[
+                                    <div>
+Bună tuturor.
+Astăzi, 28 Noiembrie, de la ora 19:00 va avea loc prima întâlnire din cadrul cursului săptămânal „Info++ pentru 10 în BAC”, organizat prin intermediul TeachAS de către Alex Despan și Claudia Scorția (absolvenți șaguniști, actuali studenți la TU Delft). Lecția va fi dedicată prioritar elevilor de la științe care vor să dea bacul la info, însă este binevenit oricine care vrea să învețe ceva nou.
+Link-ul întâlnirii este <a href='https://meet.google.com/tkf-copt-hou'>https://meet.google.com/tkf-copt-hou</a>. Dacă cunoașteți pe cineva care ar fi interesat, vă rugăm să transmiteți mai departe.
+
+
+Vă așteptăm cu drag!
+                                    </div>
+                ]]>
+            </field>
+        </record>
+    </data>
 </odoo>
