@@ -15,10 +15,10 @@
                             <th class="table_for_phone">Detalii despre întâlnire</th>
                             <!--                            <th class="table_for_phone">Detalii exacte (oră, locație/link)</th>-->
                             <t t-if="elev">
-                                <th class="table_for_phone">Numărul de telefon al elevului</th>
+                                <th class="table_for_phone">Numărul de telefon al mentorului</th>
                             </t>
                             <t t-if="mentor">
-                                <th class="table_for_phone">Numărul de telefon al mentorului</th>
+                                <th class="table_for_phone">Numărul de telefon al elevului</th>
                             </t>
                             <th>A avut loc meditația?</th>
                             <th class="more_info"></th>
