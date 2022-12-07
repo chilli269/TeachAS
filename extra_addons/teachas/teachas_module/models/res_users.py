@@ -17,10 +17,13 @@ class AddContactType(models.Model):
     grade_id = fields.Selection([('1','5th-8th'),('2', '9th'),('3', '10th'),('4', '11th'),('5','12th')], string="Grade")
 
     auxiliary_hours=fields.Float(default=0)
+    auxiliary_hours_second=fields.Float(default=0)
 
     def _available_hours_reset(self):
         records = self.sudo().search([])
         for rec in records:
             rec.available_hours += rec.auxiliary_hours
-            rec.auxiliary_hours = 0
+            rec.available_hours -= rec.auxiliary_hours_second
+            rec.auxiliary_hours = rec.auxiliary_hours_second
+            rec.auxiliary_hours_second=0
         

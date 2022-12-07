@@ -164,39 +164,77 @@ class TeachasController(http.Controller):
 
                     if mentors:
                         aux = []
-                        for rec in mentors:
-                            if rec.available_hours - time_id >= 0:
-                                aux.append(rec.id)
-                        if aux:
-                            mentors = mentors.filtered(lambda r: r.id in aux)
-                            _logger.info('\n\n 2 %s \n\n',mentors)
-                            
-                            if mentors:
-                                mentors = mentors.sorted(key=lambda r: r.exp_points)
-                                partner = request.env['teachas'].sudo().create({
-                                    'time_length': post.get('time_length'),
-                                    'materie': int(post.get('subject')),
-                                    'data': days[index].id,
-                                    'session_type': post.get('session_type'),
-                                    'elev': user_id.id,
-                                    'details': post.get('details'),
-                                    'mentor': mentors[0].id
-                                })
+                        if index>datetime.today().weekday():
+                            for rec in mentors:
+                                if rec.available_hours - time_id >= 0:
+                                    aux.append(rec.id)
+                            if aux:
+                                mentors = mentors.filtered(lambda r: r.id in aux)
+                                _logger.info('\n\n 2 %s \n\n',mentors)
+                                
+                                if mentors:
+                                    mentors = mentors.sorted(key=lambda r: r.exp_points)
+                                    partner = request.env['teachas'].sudo().create({
+                                        'time_length': post.get('time_length'),
+                                        'materie': int(post.get('subject')),
+                                        'data': days[index].id,
+                                        'session_type': post.get('session_type'),
+                                        'elev': user_id.id,
+                                        'details': post.get('details'),
+                                        'mentor': mentors[0].id
+                                    })
 
-                                _logger.info('\n\n 3 %s \n\n',mentors)
-                                _logger.info('\n\n 3 %s \n\n',partner.mentor.name)
+                                    _logger.info('\n\n 3 %s \n\n',mentors)
+                                    _logger.info('\n\n 3 %s \n\n',partner.mentor.name)
 
-                                mentors[0].available_hours -= time_id # remove hours from available time
-                                mentors[0].auxiliary_hours += time_id  
-                                mentors[0].exp_points += 8 * time_id
-                                vals = {
-                                    'partner': partner,
-                                }
-                                return request.render("teachas_website.schedule_meeting_success", vals)
+                                    mentors[0].available_hours -= time_id # remove hours from available time
+                                    mentors[0].auxiliary_hours += time_id  
+                                    mentors[0].exp_points += 8 * time_id
+
+                                    vals = {
+                                        'partner': partner,
+                                    }
+                                    return request.render("teachas_website.schedule_meeting_success", vals)
+                                else:
+                                    index+=1
+                                
                             else:
                                 index+=1
                         else:
-                            index+=1
+                            for rec in mentors:
+                                if rec.available_hours + rec.auxiliary_hours - time_id - rec.auxiliary_hours_second >= 0:
+                                    aux.append(rec.id)
+                            if aux:
+                                mentors = mentors.filtered(lambda r: r.id in aux)
+                                _logger.info('\n\n 2 %s \n\n',mentors)
+                                
+                                if mentors:
+                                    mentors = mentors.sorted(key=lambda r: r.exp_points)
+                                    partner = request.env['teachas'].sudo().create({
+                                        'time_length': post.get('time_length'),
+                                        'materie': int(post.get('subject')),
+                                        'data': days[index].id,
+                                        'session_type': post.get('session_type'),
+                                        'elev': user_id.id,
+                                        'details': post.get('details'),
+                                        'mentor': mentors[0].id
+                                    })
+
+                                    _logger.info('\n\n 3 %s \n\n',mentors)
+                                    _logger.info('\n\n 3 %s \n\n',partner.mentor.name)
+
+                                    mentors[0].auxiliary_hours_second += time_id  
+
+                                    mentors[0].exp_points += 8 * time_id
+                                    vals = {
+                                        'partner': partner,
+                                    }
+                                    return request.render("teachas_website.schedule_meeting_success", vals)
+                                else:
+                                    index+=1
+                                
+                            else:
+                                index+=1
                     else:
                         index+=1
                 else:
@@ -224,33 +262,65 @@ class TeachasController(http.Controller):
 
                 if mentors:
                     aux = []
-                    for rec in mentors:
-                        if rec.available_hours - time_id < 0:
-                            aux.append(rec.id)
-                    mentors = mentors.filtered_domain([('id', 'not in', aux)])
-                    _logger.info('\n\n Mentors3 %s \n\n', mentors)
-                    # del mentors2
-                if mentors:
-                    mentors = mentors.sorted(key=lambda r: r.exp_points)
+                    if int(post.get('preferred_day'))-1>datetime.today().weekday():
+                        for rec in mentors:
+                            if rec.available_hours - time_id < 0:
+                                aux.append(rec.id)
+                        mentors = mentors.filtered_domain([('id', 'not in', aux)])
+                        _logger.info('\n\n Mentors3 %s \n\n', mentors)
+                        # del mentors2
+                        if mentors:
+                            mentors = mentors.sorted(key=lambda r: r.exp_points)
 
-                    _logger.info('\n\n Mentors4 %s \n\n', mentors)
+                            _logger.info('\n\n Mentors4 %s \n\n', mentors)
 
-                    partner = request.env['teachas'].sudo().create({
-                        'time_length': post.get('time_length'),
-                        'materie': int(post.get('subject')),
-                        'data': int(post.get('preferred_day')),
-                        'session_type': post.get('session_type'),
-                        'elev': user_id.id,
-                        'details': post.get('details'),
-                        'mentor': mentors[0].id
-                    })
-                    mentors[0].available_hours -= time_id # remove hours from available time
-                    mentors[0].auxiliary_hours += time_id  
-                    mentors[0].exp_points += 8 * time_id
-                    vals = {
-                        'partner': partner,
-                    }
-                    return request.render("teachas_website.schedule_meeting_success", vals)
+                            partner = request.env['teachas'].sudo().create({
+                                'time_length': post.get('time_length'),
+                                'materie': int(post.get('subject')),
+                                'data': int(post.get('preferred_day')),
+                                'session_type': post.get('session_type'),
+                                'elev': user_id.id,
+                                'details': post.get('details'),
+                                'mentor': mentors[0].id
+                            })
+                            mentors[0].available_hours -= time_id # remove hours from available time
+                            mentors[0].auxiliary_hours += time_id  
+                            mentors[0].exp_points += 8 * time_id
+                            vals = {
+                                'partner': partner,
+                            }
+                            return request.render("teachas_website.schedule_meeting_success", vals)
+                        else:
+                            return request.render("teachas_website.schedule_meeting_fail")
+                    else:
+                        for rec in mentors:
+                            if rec.available_hours + rec.auxiliary_hours - time_id - rec.auxiliary_hours_second < 0:
+                                aux.append(rec.id)
+                        mentors = mentors.filtered_domain([('id', 'not in', aux)])
+                        _logger.info('\n\n Mentors3 %s \n\n', mentors)
+                        # del mentors2
+                        if mentors:
+                            mentors = mentors.sorted(key=lambda r: r.exp_points)
+
+                            _logger.info('\n\n Mentors4 %s \n\n', mentors)
+
+                            partner = request.env['teachas'].sudo().create({
+                                'time_length': post.get('time_length'),
+                                'materie': int(post.get('subject')),
+                                'data': int(post.get('preferred_day')),
+                                'session_type': post.get('session_type'),
+                                'elev': user_id.id,
+                                'details': post.get('details'),
+                                'mentor': mentors[0].id
+                            })
+                            mentors[0].auxiliary_hours_second+=time_id
+                            
+                            vals = {
+                                'partner': partner,
+                            }
+                            return request.render("teachas_website.schedule_meeting_success", vals)
+                        else:
+                            return request.render("teachas_website.schedule_meeting_fail")
                 else:
                     return request.render("teachas_website.schedule_meeting_fail")
             else:
